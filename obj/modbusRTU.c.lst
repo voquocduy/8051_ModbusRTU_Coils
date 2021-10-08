@@ -1,0 +1,2100 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 4.1.0 #12072 (MINGW64)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module modbusRTU
+                                      6 	.optsdcc -mmcs51 --model-small
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _PutNChar_PARM_2
+                                     12 	.globl _MOSI
+                                     13 	.globl _P00
+                                     14 	.globl _MISO
+                                     15 	.globl _P01
+                                     16 	.globl _RXD_1
+                                     17 	.globl _P02
+                                     18 	.globl _P03
+                                     19 	.globl _STADC
+                                     20 	.globl _P04
+                                     21 	.globl _P05
+                                     22 	.globl _TXD
+                                     23 	.globl _P06
+                                     24 	.globl _RXD
+                                     25 	.globl _P07
+                                     26 	.globl _IT0
+                                     27 	.globl _IE0
+                                     28 	.globl _IT1
+                                     29 	.globl _IE1
+                                     30 	.globl _TR0
+                                     31 	.globl _TF0
+                                     32 	.globl _TR1
+                                     33 	.globl _TF1
+                                     34 	.globl _P10
+                                     35 	.globl _P11
+                                     36 	.globl _P12
+                                     37 	.globl _SCL
+                                     38 	.globl _P13
+                                     39 	.globl _SDA
+                                     40 	.globl _P14
+                                     41 	.globl _P15
+                                     42 	.globl _TXD_1
+                                     43 	.globl _P16
+                                     44 	.globl _P17
+                                     45 	.globl _RI
+                                     46 	.globl _TI
+                                     47 	.globl _RB8
+                                     48 	.globl _TB8
+                                     49 	.globl _REN
+                                     50 	.globl _SM2
+                                     51 	.globl _SM1
+                                     52 	.globl _FE
+                                     53 	.globl _SM0
+                                     54 	.globl _P20
+                                     55 	.globl _EX0
+                                     56 	.globl _ET0
+                                     57 	.globl _EX1
+                                     58 	.globl _ET1
+                                     59 	.globl _ES
+                                     60 	.globl _EBOD
+                                     61 	.globl _EADC
+                                     62 	.globl _EA
+                                     63 	.globl _P30
+                                     64 	.globl _PX0
+                                     65 	.globl _PT0
+                                     66 	.globl _PX1
+                                     67 	.globl _PT1
+                                     68 	.globl _PS
+                                     69 	.globl _PBOD
+                                     70 	.globl _PADC
+                                     71 	.globl _I2CPX
+                                     72 	.globl _AA
+                                     73 	.globl _SI
+                                     74 	.globl _STO
+                                     75 	.globl _STA
+                                     76 	.globl _I2CEN
+                                     77 	.globl _CM_RL2
+                                     78 	.globl _TR2
+                                     79 	.globl _TF2
+                                     80 	.globl _P
+                                     81 	.globl _OV
+                                     82 	.globl _RS0
+                                     83 	.globl _RS1
+                                     84 	.globl _F0
+                                     85 	.globl _AC
+                                     86 	.globl _CY
+                                     87 	.globl _CLRPWM
+                                     88 	.globl _PWMF
+                                     89 	.globl _LOAD
+                                     90 	.globl _PWMRUN
+                                     91 	.globl _ADCHS0
+                                     92 	.globl _ADCHS1
+                                     93 	.globl _ADCHS2
+                                     94 	.globl _ADCHS3
+                                     95 	.globl _ETGSEL0
+                                     96 	.globl _ETGSEL1
+                                     97 	.globl _ADCS
+                                     98 	.globl _ADCF
+                                     99 	.globl _RI_1
+                                    100 	.globl _TI_1
+                                    101 	.globl _RB8_1
+                                    102 	.globl _TB8_1
+                                    103 	.globl _REN_1
+                                    104 	.globl _SM2_1
+                                    105 	.globl _SM1_1
+                                    106 	.globl _FE_1
+                                    107 	.globl _SM0_1
+                                    108 	.globl _EIPH1
+                                    109 	.globl _EIP1
+                                    110 	.globl _PMD
+                                    111 	.globl _PMEN
+                                    112 	.globl _PDTCNT
+                                    113 	.globl _PDTEN
+                                    114 	.globl _SCON_1
+                                    115 	.globl _EIPH
+                                    116 	.globl _AINDIDS
+                                    117 	.globl _SPDR
+                                    118 	.globl _SPSR
+                                    119 	.globl _SPCR2
+                                    120 	.globl _SPCR
+                                    121 	.globl _CAPCON4
+                                    122 	.globl _CAPCON3
+                                    123 	.globl _B
+                                    124 	.globl _EIP
+                                    125 	.globl _C2H
+                                    126 	.globl _C2L
+                                    127 	.globl _PIF
+                                    128 	.globl _PIPEN
+                                    129 	.globl _PINEN
+                                    130 	.globl _PICON
+                                    131 	.globl _ADCCON0
+                                    132 	.globl _C1H
+                                    133 	.globl _C1L
+                                    134 	.globl _C0H
+                                    135 	.globl _C0L
+                                    136 	.globl _ADCDLY
+                                    137 	.globl _ADCCON2
+                                    138 	.globl _ADCCON1
+                                    139 	.globl _ACC
+                                    140 	.globl _PWMCON1
+                                    141 	.globl _PIOCON0
+                                    142 	.globl _PWM3L
+                                    143 	.globl _PWM2L
+                                    144 	.globl _PWM1L
+                                    145 	.globl _PWM0L
+                                    146 	.globl _PWMPL
+                                    147 	.globl _PWMCON0
+                                    148 	.globl _FBD
+                                    149 	.globl _PNP
+                                    150 	.globl _PWM3H
+                                    151 	.globl _PWM2H
+                                    152 	.globl _PWM1H
+                                    153 	.globl _PWM0H
+                                    154 	.globl _PWMPH
+                                    155 	.globl _PSW
+                                    156 	.globl _ADCMPH
+                                    157 	.globl _ADCMPL
+                                    158 	.globl _PWM5L
+                                    159 	.globl _TH2
+                                    160 	.globl _PWM4L
+                                    161 	.globl _TL2
+                                    162 	.globl _RCMP2H
+                                    163 	.globl _RCMP2L
+                                    164 	.globl _T2MOD
+                                    165 	.globl _T2CON
+                                    166 	.globl _TA
+                                    167 	.globl _PIOCON1
+                                    168 	.globl _RH3
+                                    169 	.globl _PWM5H
+                                    170 	.globl _RL3
+                                    171 	.globl _PWM4H
+                                    172 	.globl _T3CON
+                                    173 	.globl _ADCRH
+                                    174 	.globl _ADCRL
+                                    175 	.globl _I2ADDR
+                                    176 	.globl _I2CON
+                                    177 	.globl _I2TOC
+                                    178 	.globl _I2CLK
+                                    179 	.globl _I2STAT
+                                    180 	.globl _I2DAT
+                                    181 	.globl _SADDR_1
+                                    182 	.globl _SADEN_1
+                                    183 	.globl _SADEN
+                                    184 	.globl _IP
+                                    185 	.globl _PWMINTC
+                                    186 	.globl _IPH
+                                    187 	.globl _P2S
+                                    188 	.globl _P1SR
+                                    189 	.globl _P1M2
+                                    190 	.globl _P1S
+                                    191 	.globl _P1M1
+                                    192 	.globl _P0SR
+                                    193 	.globl _P0M2
+                                    194 	.globl _P0S
+                                    195 	.globl _P0M1
+                                    196 	.globl _P3
+                                    197 	.globl _IAPCN
+                                    198 	.globl _IAPFD
+                                    199 	.globl _P3SR
+                                    200 	.globl _P3M2
+                                    201 	.globl _P3S
+                                    202 	.globl _P3M1
+                                    203 	.globl _BODCON1
+                                    204 	.globl _WDCON
+                                    205 	.globl _SADDR
+                                    206 	.globl _IE
+                                    207 	.globl _IAPAH
+                                    208 	.globl _IAPAL
+                                    209 	.globl _IAPUEN
+                                    210 	.globl _IAPTRG
+                                    211 	.globl _BODCON0
+                                    212 	.globl _AUXR1
+                                    213 	.globl _P2
+                                    214 	.globl _CHPCON
+                                    215 	.globl _EIE1
+                                    216 	.globl _EIE
+                                    217 	.globl _SBUF_1
+                                    218 	.globl _SBUF
+                                    219 	.globl _SCON
+                                    220 	.globl _CKEN
+                                    221 	.globl _CKSWT
+                                    222 	.globl _CKDIV
+                                    223 	.globl _CAPCON2
+                                    224 	.globl _CAPCON1
+                                    225 	.globl _CAPCON0
+                                    226 	.globl _SFRS
+                                    227 	.globl _P1
+                                    228 	.globl _WKCON
+                                    229 	.globl _CKCON
+                                    230 	.globl _TH1
+                                    231 	.globl _TH0
+                                    232 	.globl _TL1
+                                    233 	.globl _TL0
+                                    234 	.globl _TMOD
+                                    235 	.globl _TCON
+                                    236 	.globl _PCON
+                                    237 	.globl _RWK
+                                    238 	.globl _RCTRIM1
+                                    239 	.globl _RCTRIM0
+                                    240 	.globl _DPH
+                                    241 	.globl _DPL
+                                    242 	.globl _SP
+                                    243 	.globl _P0
+                                    244 	.globl _function_MODBUS_PARM_2
+                                    245 	.globl _send_buf
+                                    246 	.globl _Coils
+                                    247 	.globl _modbus_recv_buf
+                                    248 	.globl _rec_num
+                                    249 	.globl _rec_stat
+                                    250 	.globl _PutNChar
+                                    251 	.globl _function_MODBUS
+                                    252 	.globl _read_coil
+                                    253 	.globl _force_coil_bit
+                                    254 	.globl _force_coil_mul
+                                    255 ;--------------------------------------------------------
+                                    256 ; special function registers
+                                    257 ;--------------------------------------------------------
+                                    258 	.area RSEG    (ABS,DATA)
+      000000                        259 	.org 0x0000
+                           000080   260 _P0	=	0x0080
+                           000081   261 _SP	=	0x0081
+                           000082   262 _DPL	=	0x0082
+                           000083   263 _DPH	=	0x0083
+                           000084   264 _RCTRIM0	=	0x0084
+                           000085   265 _RCTRIM1	=	0x0085
+                           000086   266 _RWK	=	0x0086
+                           000087   267 _PCON	=	0x0087
+                           000088   268 _TCON	=	0x0088
+                           000089   269 _TMOD	=	0x0089
+                           00008A   270 _TL0	=	0x008a
+                           00008B   271 _TL1	=	0x008b
+                           00008C   272 _TH0	=	0x008c
+                           00008D   273 _TH1	=	0x008d
+                           00008E   274 _CKCON	=	0x008e
+                           00008F   275 _WKCON	=	0x008f
+                           000090   276 _P1	=	0x0090
+                           000091   277 _SFRS	=	0x0091
+                           000092   278 _CAPCON0	=	0x0092
+                           000093   279 _CAPCON1	=	0x0093
+                           000094   280 _CAPCON2	=	0x0094
+                           000095   281 _CKDIV	=	0x0095
+                           000096   282 _CKSWT	=	0x0096
+                           000097   283 _CKEN	=	0x0097
+                           000098   284 _SCON	=	0x0098
+                           000099   285 _SBUF	=	0x0099
+                           00009A   286 _SBUF_1	=	0x009a
+                           00009B   287 _EIE	=	0x009b
+                           00009C   288 _EIE1	=	0x009c
+                           00009F   289 _CHPCON	=	0x009f
+                           0000A0   290 _P2	=	0x00a0
+                           0000A2   291 _AUXR1	=	0x00a2
+                           0000A3   292 _BODCON0	=	0x00a3
+                           0000A4   293 _IAPTRG	=	0x00a4
+                           0000A5   294 _IAPUEN	=	0x00a5
+                           0000A6   295 _IAPAL	=	0x00a6
+                           0000A7   296 _IAPAH	=	0x00a7
+                           0000A8   297 _IE	=	0x00a8
+                           0000A9   298 _SADDR	=	0x00a9
+                           0000AA   299 _WDCON	=	0x00aa
+                           0000AB   300 _BODCON1	=	0x00ab
+                           0000AC   301 _P3M1	=	0x00ac
+                           0000AC   302 _P3S	=	0x00ac
+                           0000AD   303 _P3M2	=	0x00ad
+                           0000AD   304 _P3SR	=	0x00ad
+                           0000AE   305 _IAPFD	=	0x00ae
+                           0000AF   306 _IAPCN	=	0x00af
+                           0000B0   307 _P3	=	0x00b0
+                           0000B1   308 _P0M1	=	0x00b1
+                           0000B1   309 _P0S	=	0x00b1
+                           0000B2   310 _P0M2	=	0x00b2
+                           0000B2   311 _P0SR	=	0x00b2
+                           0000B3   312 _P1M1	=	0x00b3
+                           0000B3   313 _P1S	=	0x00b3
+                           0000B4   314 _P1M2	=	0x00b4
+                           0000B4   315 _P1SR	=	0x00b4
+                           0000B5   316 _P2S	=	0x00b5
+                           0000B7   317 _IPH	=	0x00b7
+                           0000B7   318 _PWMINTC	=	0x00b7
+                           0000B8   319 _IP	=	0x00b8
+                           0000B9   320 _SADEN	=	0x00b9
+                           0000BA   321 _SADEN_1	=	0x00ba
+                           0000BB   322 _SADDR_1	=	0x00bb
+                           0000BC   323 _I2DAT	=	0x00bc
+                           0000BD   324 _I2STAT	=	0x00bd
+                           0000BE   325 _I2CLK	=	0x00be
+                           0000BF   326 _I2TOC	=	0x00bf
+                           0000C0   327 _I2CON	=	0x00c0
+                           0000C1   328 _I2ADDR	=	0x00c1
+                           0000C2   329 _ADCRL	=	0x00c2
+                           0000C3   330 _ADCRH	=	0x00c3
+                           0000C4   331 _T3CON	=	0x00c4
+                           0000C4   332 _PWM4H	=	0x00c4
+                           0000C5   333 _RL3	=	0x00c5
+                           0000C5   334 _PWM5H	=	0x00c5
+                           0000C6   335 _RH3	=	0x00c6
+                           0000C6   336 _PIOCON1	=	0x00c6
+                           0000C7   337 _TA	=	0x00c7
+                           0000C8   338 _T2CON	=	0x00c8
+                           0000C9   339 _T2MOD	=	0x00c9
+                           0000CA   340 _RCMP2L	=	0x00ca
+                           0000CB   341 _RCMP2H	=	0x00cb
+                           0000CC   342 _TL2	=	0x00cc
+                           0000CC   343 _PWM4L	=	0x00cc
+                           0000CD   344 _TH2	=	0x00cd
+                           0000CD   345 _PWM5L	=	0x00cd
+                           0000CE   346 _ADCMPL	=	0x00ce
+                           0000CF   347 _ADCMPH	=	0x00cf
+                           0000D0   348 _PSW	=	0x00d0
+                           0000D1   349 _PWMPH	=	0x00d1
+                           0000D2   350 _PWM0H	=	0x00d2
+                           0000D3   351 _PWM1H	=	0x00d3
+                           0000D4   352 _PWM2H	=	0x00d4
+                           0000D5   353 _PWM3H	=	0x00d5
+                           0000D6   354 _PNP	=	0x00d6
+                           0000D7   355 _FBD	=	0x00d7
+                           0000D8   356 _PWMCON0	=	0x00d8
+                           0000D9   357 _PWMPL	=	0x00d9
+                           0000DA   358 _PWM0L	=	0x00da
+                           0000DB   359 _PWM1L	=	0x00db
+                           0000DC   360 _PWM2L	=	0x00dc
+                           0000DD   361 _PWM3L	=	0x00dd
+                           0000DE   362 _PIOCON0	=	0x00de
+                           0000DF   363 _PWMCON1	=	0x00df
+                           0000E0   364 _ACC	=	0x00e0
+                           0000E1   365 _ADCCON1	=	0x00e1
+                           0000E2   366 _ADCCON2	=	0x00e2
+                           0000E3   367 _ADCDLY	=	0x00e3
+                           0000E4   368 _C0L	=	0x00e4
+                           0000E5   369 _C0H	=	0x00e5
+                           0000E6   370 _C1L	=	0x00e6
+                           0000E7   371 _C1H	=	0x00e7
+                           0000E8   372 _ADCCON0	=	0x00e8
+                           0000E9   373 _PICON	=	0x00e9
+                           0000EA   374 _PINEN	=	0x00ea
+                           0000EB   375 _PIPEN	=	0x00eb
+                           0000EC   376 _PIF	=	0x00ec
+                           0000ED   377 _C2L	=	0x00ed
+                           0000EE   378 _C2H	=	0x00ee
+                           0000EF   379 _EIP	=	0x00ef
+                           0000F0   380 _B	=	0x00f0
+                           0000F1   381 _CAPCON3	=	0x00f1
+                           0000F2   382 _CAPCON4	=	0x00f2
+                           0000F3   383 _SPCR	=	0x00f3
+                           0000F3   384 _SPCR2	=	0x00f3
+                           0000F4   385 _SPSR	=	0x00f4
+                           0000F5   386 _SPDR	=	0x00f5
+                           0000F6   387 _AINDIDS	=	0x00f6
+                           0000F7   388 _EIPH	=	0x00f7
+                           0000F8   389 _SCON_1	=	0x00f8
+                           0000F9   390 _PDTEN	=	0x00f9
+                           0000FA   391 _PDTCNT	=	0x00fa
+                           0000FB   392 _PMEN	=	0x00fb
+                           0000FC   393 _PMD	=	0x00fc
+                           0000FE   394 _EIP1	=	0x00fe
+                           0000FF   395 _EIPH1	=	0x00ff
+                                    396 ;--------------------------------------------------------
+                                    397 ; special function bits
+                                    398 ;--------------------------------------------------------
+                                    399 	.area RSEG    (ABS,DATA)
+      000000                        400 	.org 0x0000
+                           0000FF   401 _SM0_1	=	0x00ff
+                           0000FF   402 _FE_1	=	0x00ff
+                           0000FE   403 _SM1_1	=	0x00fe
+                           0000FD   404 _SM2_1	=	0x00fd
+                           0000FC   405 _REN_1	=	0x00fc
+                           0000FB   406 _TB8_1	=	0x00fb
+                           0000FA   407 _RB8_1	=	0x00fa
+                           0000F9   408 _TI_1	=	0x00f9
+                           0000F8   409 _RI_1	=	0x00f8
+                           0000EF   410 _ADCF	=	0x00ef
+                           0000EE   411 _ADCS	=	0x00ee
+                           0000ED   412 _ETGSEL1	=	0x00ed
+                           0000EC   413 _ETGSEL0	=	0x00ec
+                           0000EB   414 _ADCHS3	=	0x00eb
+                           0000EA   415 _ADCHS2	=	0x00ea
+                           0000E9   416 _ADCHS1	=	0x00e9
+                           0000E8   417 _ADCHS0	=	0x00e8
+                           0000DF   418 _PWMRUN	=	0x00df
+                           0000DE   419 _LOAD	=	0x00de
+                           0000DD   420 _PWMF	=	0x00dd
+                           0000DC   421 _CLRPWM	=	0x00dc
+                           0000D7   422 _CY	=	0x00d7
+                           0000D6   423 _AC	=	0x00d6
+                           0000D5   424 _F0	=	0x00d5
+                           0000D4   425 _RS1	=	0x00d4
+                           0000D3   426 _RS0	=	0x00d3
+                           0000D2   427 _OV	=	0x00d2
+                           0000D0   428 _P	=	0x00d0
+                           0000CF   429 _TF2	=	0x00cf
+                           0000CA   430 _TR2	=	0x00ca
+                           0000C8   431 _CM_RL2	=	0x00c8
+                           0000C6   432 _I2CEN	=	0x00c6
+                           0000C5   433 _STA	=	0x00c5
+                           0000C4   434 _STO	=	0x00c4
+                           0000C3   435 _SI	=	0x00c3
+                           0000C2   436 _AA	=	0x00c2
+                           0000C0   437 _I2CPX	=	0x00c0
+                           0000BE   438 _PADC	=	0x00be
+                           0000BD   439 _PBOD	=	0x00bd
+                           0000BC   440 _PS	=	0x00bc
+                           0000BB   441 _PT1	=	0x00bb
+                           0000BA   442 _PX1	=	0x00ba
+                           0000B9   443 _PT0	=	0x00b9
+                           0000B8   444 _PX0	=	0x00b8
+                           0000B0   445 _P30	=	0x00b0
+                           0000AF   446 _EA	=	0x00af
+                           0000AE   447 _EADC	=	0x00ae
+                           0000AD   448 _EBOD	=	0x00ad
+                           0000AC   449 _ES	=	0x00ac
+                           0000AB   450 _ET1	=	0x00ab
+                           0000AA   451 _EX1	=	0x00aa
+                           0000A9   452 _ET0	=	0x00a9
+                           0000A8   453 _EX0	=	0x00a8
+                           0000A0   454 _P20	=	0x00a0
+                           00009F   455 _SM0	=	0x009f
+                           00009F   456 _FE	=	0x009f
+                           00009E   457 _SM1	=	0x009e
+                           00009D   458 _SM2	=	0x009d
+                           00009C   459 _REN	=	0x009c
+                           00009B   460 _TB8	=	0x009b
+                           00009A   461 _RB8	=	0x009a
+                           000099   462 _TI	=	0x0099
+                           000098   463 _RI	=	0x0098
+                           000097   464 _P17	=	0x0097
+                           000096   465 _P16	=	0x0096
+                           000096   466 _TXD_1	=	0x0096
+                           000095   467 _P15	=	0x0095
+                           000094   468 _P14	=	0x0094
+                           000094   469 _SDA	=	0x0094
+                           000093   470 _P13	=	0x0093
+                           000093   471 _SCL	=	0x0093
+                           000092   472 _P12	=	0x0092
+                           000091   473 _P11	=	0x0091
+                           000090   474 _P10	=	0x0090
+                           00008F   475 _TF1	=	0x008f
+                           00008E   476 _TR1	=	0x008e
+                           00008D   477 _TF0	=	0x008d
+                           00008C   478 _TR0	=	0x008c
+                           00008B   479 _IE1	=	0x008b
+                           00008A   480 _IT1	=	0x008a
+                           000089   481 _IE0	=	0x0089
+                           000088   482 _IT0	=	0x0088
+                           000087   483 _P07	=	0x0087
+                           000087   484 _RXD	=	0x0087
+                           000086   485 _P06	=	0x0086
+                           000086   486 _TXD	=	0x0086
+                           000085   487 _P05	=	0x0085
+                           000084   488 _P04	=	0x0084
+                           000084   489 _STADC	=	0x0084
+                           000083   490 _P03	=	0x0083
+                           000082   491 _P02	=	0x0082
+                           000082   492 _RXD_1	=	0x0082
+                           000081   493 _P01	=	0x0081
+                           000081   494 _MISO	=	0x0081
+                           000080   495 _P00	=	0x0080
+                           000080   496 _MOSI	=	0x0080
+                                    497 ;--------------------------------------------------------
+                                    498 ; overlayable register banks
+                                    499 ;--------------------------------------------------------
+                                    500 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        501 	.ds 8
+                                    502 ;--------------------------------------------------------
+                                    503 ; internal ram data
+                                    504 ;--------------------------------------------------------
+                                    505 	.area DSEG    (DATA)
+      000000                        506 _rec_stat::
+      000000                        507 	.ds 1
+      000001                        508 _rec_num::
+      000001                        509 	.ds 1
+      000002                        510 _modbus_recv_buf::
+      000002                        511 	.ds 20
+      000016                        512 _Coils::
+      000016                        513 	.ds 20
+      00002A                        514 _send_buf::
+      00002A                        515 	.ds 6
+      000030                        516 _function_MODBUS_PARM_2:
+      000030                        517 	.ds 2
+      000032                        518 _read_coil_rec_buff_65536_28:
+      000032                        519 	.ds 3
+      000035                        520 _read_coil_read_address_131072_31:
+      000035                        521 	.ds 2
+      000037                        522 _read_coil_num_of_bytes_262144_34:
+      000037                        523 	.ds 2
+      000039                        524 _read_coil_remainder_262144_34:
+      000039                        525 	.ds 2
+      00003B                        526 _read_coil_i_262144_34:
+      00003B                        527 	.ds 2
+      00003D                        528 _read_coil_j_262144_34:
+      00003D                        529 	.ds 2
+      00003F                        530 _read_coil_k_262144_34:
+      00003F                        531 	.ds 2
+      000041                        532 _read_coil_l_262144_34:
+      000041                        533 	.ds 2
+      000043                        534 _read_coil_lsb_262144_34:
+      000043                        535 	.ds 1
+      000044                        536 _read_coil_sloc0_1_0:
+      000044                        537 	.ds 2
+      000046                        538 _read_coil_sloc1_1_0:
+      000046                        539 	.ds 3
+      000049                        540 _force_coil_bit_rec_buff_65536_48:
+      000049                        541 	.ds 3
+      00004C                        542 _force_coil_bit_write_address_131072_51:
+      00004C                        543 	.ds 2
+      00004E                        544 _force_coil_mul_rec_buff_65536_54:
+      00004E                        545 	.ds 3
+      000051                        546 _force_coil_mul_write_multi_Address_65536_55:
+      000051                        547 	.ds 2
+      000053                        548 _force_coil_mul_remainder_65536_55:
+      000053                        549 	.ds 1
+      000054                        550 _force_coil_mul_i_65536_55:
+      000054                        551 	.ds 1
+      000055                        552 _force_coil_mul_j_65536_55:
+      000055                        553 	.ds 1
+      000056                        554 _force_coil_mul_ValueToWrite_65537_57:
+      000056                        555 	.ds 1
+      000057                        556 _force_coil_mul_q_65537_57:
+      000057                        557 	.ds 1
+                                    558 ;--------------------------------------------------------
+                                    559 ; overlayable items in internal ram 
+                                    560 ;--------------------------------------------------------
+                                    561 	.area	OSEG    (OVR,DATA)
+      000000                        562 _PutNChar_PARM_2:
+      000000                        563 	.ds 2
+                                    564 	.area	OSEG    (OVR,DATA)
+      000000                        565 _generate_crc_PARM_2:
+      000000                        566 	.ds 1
+      000001                        567 _generate_crc_rec_buff_65536_8:
+      000001                        568 	.ds 3
+                                    569 	.area	OSEG    (OVR,DATA)
+      000000                        570 _check_crc_PARM_2:
+      000000                        571 	.ds 2
+      000002                        572 _check_crc_rec_buff_65536_16:
+      000002                        573 	.ds 3
+      000005                        574 _check_crc_i_65536_17:
+      000005                        575 	.ds 2
+                                    576 ;--------------------------------------------------------
+                                    577 ; indirectly addressable internal ram data
+                                    578 ;--------------------------------------------------------
+                                    579 	.area ISEG    (DATA)
+                                    580 ;--------------------------------------------------------
+                                    581 ; absolute internal ram data
+                                    582 ;--------------------------------------------------------
+                                    583 	.area IABS    (ABS,DATA)
+                                    584 	.area IABS    (ABS,DATA)
+                                    585 ;--------------------------------------------------------
+                                    586 ; bit data
+                                    587 ;--------------------------------------------------------
+                                    588 	.area BSEG    (BIT)
+                                    589 ;--------------------------------------------------------
+                                    590 ; paged external ram data
+                                    591 ;--------------------------------------------------------
+                                    592 	.area PSEG    (PAG,XDATA)
+                                    593 ;--------------------------------------------------------
+                                    594 ; external ram data
+                                    595 ;--------------------------------------------------------
+                                    596 	.area XSEG    (XDATA)
+                                    597 ;--------------------------------------------------------
+                                    598 ; absolute external ram data
+                                    599 ;--------------------------------------------------------
+                                    600 	.area XABS    (ABS,XDATA)
+                                    601 ;--------------------------------------------------------
+                                    602 ; external initialized ram data
+                                    603 ;--------------------------------------------------------
+                                    604 	.area HOME    (CODE)
+                                    605 	.area GSINIT0 (CODE)
+                                    606 	.area GSINIT1 (CODE)
+                                    607 	.area GSINIT2 (CODE)
+                                    608 	.area GSINIT3 (CODE)
+                                    609 	.area GSINIT4 (CODE)
+                                    610 	.area GSINIT5 (CODE)
+                                    611 	.area GSINIT  (CODE)
+                                    612 	.area GSFINAL (CODE)
+                                    613 	.area CSEG    (CODE)
+                                    614 ;--------------------------------------------------------
+                                    615 ; global & static initialisations
+                                    616 ;--------------------------------------------------------
+                                    617 	.area HOME    (CODE)
+                                    618 	.area GSINIT  (CODE)
+                                    619 	.area GSFINAL (CODE)
+                                    620 	.area GSINIT  (CODE)
+                                    621 ;--------------------------------------------------------
+                                    622 ; Home
+                                    623 ;--------------------------------------------------------
+                                    624 	.area HOME    (CODE)
+                                    625 	.area HOME    (CODE)
+                                    626 ;--------------------------------------------------------
+                                    627 ; code
+                                    628 ;--------------------------------------------------------
+                                    629 	.area CSEG    (CODE)
+                                    630 ;------------------------------------------------------------
+                                    631 ;Allocation info for local variables in function 'PutNChar'
+                                    632 ;------------------------------------------------------------
+                                    633 ;length                    Allocated with name '_PutNChar_PARM_2'
+                                    634 ;buf                       Allocated to registers r5 r6 r7 
+                                    635 ;------------------------------------------------------------
+                                    636 ;	src/modbusRTU.c:16: void PutNChar(char *buf, int length)
+                                    637 ;	-----------------------------------------
+                                    638 ;	 function PutNChar
+                                    639 ;	-----------------------------------------
+      000000                        640 _PutNChar:
+                           000007   641 	ar7 = 0x07
+                           000006   642 	ar6 = 0x06
+                           000005   643 	ar5 = 0x05
+                           000004   644 	ar4 = 0x04
+                           000003   645 	ar3 = 0x03
+                           000002   646 	ar2 = 0x02
+                           000001   647 	ar1 = 0x01
+                           000000   648 	ar0 = 0x00
+      000000 AD 82            [24]  649 	mov	r5,dpl
+      000002 AE 83            [24]  650 	mov	r6,dph
+      000004 AF F0            [24]  651 	mov	r7,b
+                                    652 ;	src/modbusRTU.c:18: while(send_buf.busy_falg);
+      000006                        653 00101$:
+      000006 E5*2A            [12]  654 	mov	a,_send_buf
+                                    655 ;	src/modbusRTU.c:19: send_buf.length = length;
+                                    656 ;	src/modbusRTU.c:20: send_buf.index = 0;	
+      000008 70 FC            [24]  657 	jnz	00101$
+      00000A AC*00            [24]  658 	mov	r4,_PutNChar_PARM_2
+      00000C 8C*2C            [24]  659 	mov	(_send_buf + 0x0002),r4
+      00000E F5*2B            [12]  660 	mov	(_send_buf + 0x0001),a
+                                    661 ;	src/modbusRTU.c:21: send_buf.buf = buf;
+      000010 8D*2D            [24]  662 	mov	((_send_buf + 0x0003) + 0),r5
+      000012 8E*2E            [24]  663 	mov	((_send_buf + 0x0003) + 1),r6
+      000014 8F*2F            [24]  664 	mov	((_send_buf + 0x0003) + 2),r7
+                                    665 ;	src/modbusRTU.c:22: send_buf.busy_falg = 1;
+      000016 75*2A 01         [24]  666 	mov	_send_buf,#0x01
+                                    667 ;	src/modbusRTU.c:23: SBUF = send_buf.buf[0];	
+      000019 85*2D 82         [24]  668 	mov	dpl,(_send_buf + 0x0003)
+      00001C 85*2E 83         [24]  669 	mov	dph,((_send_buf + 0x0003) + 1)
+      00001F 85*2F F0         [24]  670 	mov	b,((_send_buf + 0x0003) + 2)
+      000022 12r00r00         [24]  671 	lcall	__gptrget
+      000025 F5 99            [12]  672 	mov	_SBUF,a
+                                    673 ;	src/modbusRTU.c:24: }
+      000027 22               [24]  674 	ret
+                                    675 ;------------------------------------------------------------
+                                    676 ;Allocation info for local variables in function 'generate_crc'
+                                    677 ;------------------------------------------------------------
+                                    678 ;messageLength             Allocated with name '_generate_crc_PARM_2'
+                                    679 ;rec_buff                  Allocated with name '_generate_crc_rec_buff_65536_8'
+                                    680 ;crc                       Allocated to registers r0 r5 
+                                    681 ;crcHigh                   Allocated to registers 
+                                    682 ;crcLow                    Allocated to registers r3 r4 
+                                    683 ;i                         Allocated to registers r1 r2 
+                                    684 ;j                         Allocated to registers r6 r7 
+                                    685 ;------------------------------------------------------------
+                                    686 ;	src/modbusRTU.c:26: static uint16_t generate_crc(unsigned char *rec_buff, uint8_t messageLength)
+                                    687 ;	-----------------------------------------
+                                    688 ;	 function generate_crc
+                                    689 ;	-----------------------------------------
+      000028                        690 _generate_crc:
+      000028 85 82*01         [24]  691 	mov	_generate_crc_rec_buff_65536_8,dpl
+      00002B 85 83*02         [24]  692 	mov	(_generate_crc_rec_buff_65536_8 + 1),dph
+      00002E 85 F0*03         [24]  693 	mov	(_generate_crc_rec_buff_65536_8 + 2),b
+                                    694 ;	src/modbusRTU.c:28: uint16_t crc = 0xFFFF;
+      000031 7B FF            [12]  695 	mov	r3,#0xff
+      000033 7C FF            [12]  696 	mov	r4,#0xff
+                                    697 ;	src/modbusRTU.c:33: for (i = 0; i < messageLength - 2; ++i) {
+      000035 79 00            [12]  698 	mov	r1,#0x00
+      000037 7A 00            [12]  699 	mov	r2,#0x00
+      000039                        700 00109$:
+      000039 A8*00            [24]  701 	mov	r0,_generate_crc_PARM_2
+      00003B 7F 00            [12]  702 	mov	r7,#0x00
+      00003D E8               [12]  703 	mov	a,r0
+      00003E 24 FE            [12]  704 	add	a,#0xfe
+      000040 F8               [12]  705 	mov	r0,a
+      000041 EF               [12]  706 	mov	a,r7
+      000042 34 FF            [12]  707 	addc	a,#0xff
+      000044 FF               [12]  708 	mov	r7,a
+      000045 C3               [12]  709 	clr	c
+      000046 E9               [12]  710 	mov	a,r1
+      000047 98               [12]  711 	subb	a,r0
+      000048 EA               [12]  712 	mov	a,r2
+      000049 64 80            [12]  713 	xrl	a,#0x80
+      00004B 8F F0            [24]  714 	mov	b,r7
+      00004D 63 F0 80         [24]  715 	xrl	b,#0x80
+      000050 95 F0            [12]  716 	subb	a,b
+      000052 50 4D            [24]  717 	jnc	00105$
+                                    718 ;	src/modbusRTU.c:34: crc ^= rec_buff[i];
+      000054 E9               [12]  719 	mov	a,r1
+      000055 25*01            [12]  720 	add	a,_generate_crc_rec_buff_65536_8
+      000057 FD               [12]  721 	mov	r5,a
+      000058 EA               [12]  722 	mov	a,r2
+      000059 35*02            [12]  723 	addc	a,(_generate_crc_rec_buff_65536_8 + 1)
+      00005B FE               [12]  724 	mov	r6,a
+      00005C AF*03            [24]  725 	mov	r7,(_generate_crc_rec_buff_65536_8 + 2)
+      00005E 8D 82            [24]  726 	mov	dpl,r5
+      000060 8E 83            [24]  727 	mov	dph,r6
+      000062 8F F0            [24]  728 	mov	b,r7
+      000064 12r00r00         [24]  729 	lcall	__gptrget
+      000067 FD               [12]  730 	mov	r5,a
+      000068 7F 00            [12]  731 	mov	r7,#0x00
+      00006A 62 03            [12]  732 	xrl	ar3,a
+      00006C EF               [12]  733 	mov	a,r7
+      00006D 62 04            [12]  734 	xrl	ar4,a
+                                    735 ;	src/modbusRTU.c:35: for (j = 8; j != 0; j--) {
+      00006F 7E 08            [12]  736 	mov	r6,#0x08
+      000071 7F 00            [12]  737 	mov	r7,#0x00
+      000073                        738 00106$:
+                                    739 ;	src/modbusRTU.c:36: if ((crc & 0x0001) != 0) {
+      000073 EB               [12]  740 	mov	a,r3
+      000074 30 E0 13         [24]  741 	jnb	acc.0,00102$
+                                    742 ;	src/modbusRTU.c:37: crc >>= 1;
+      000077 8B 00            [24]  743 	mov	ar0,r3
+      000079 EC               [12]  744 	mov	a,r4
+      00007A C3               [12]  745 	clr	c
+      00007B 13               [12]  746 	rrc	a
+      00007C C8               [12]  747 	xch	a,r0
+      00007D 13               [12]  748 	rrc	a
+      00007E C8               [12]  749 	xch	a,r0
+      00007F FD               [12]  750 	mov	r5,a
+                                    751 ;	src/modbusRTU.c:38: crc ^= 0xA001;
+      000080 74 01            [12]  752 	mov	a,#0x01
+      000082 68               [12]  753 	xrl	a,r0
+      000083 FB               [12]  754 	mov	r3,a
+      000084 74 A0            [12]  755 	mov	a,#0xa0
+      000086 6D               [12]  756 	xrl	a,r5
+      000087 FC               [12]  757 	mov	r4,a
+      000088 80 07            [24]  758 	sjmp	00107$
+      00008A                        759 00102$:
+                                    760 ;	src/modbusRTU.c:40: crc >>= 1;
+      00008A EC               [12]  761 	mov	a,r4
+      00008B C3               [12]  762 	clr	c
+      00008C 13               [12]  763 	rrc	a
+      00008D CB               [12]  764 	xch	a,r3
+      00008E 13               [12]  765 	rrc	a
+      00008F CB               [12]  766 	xch	a,r3
+      000090 FC               [12]  767 	mov	r4,a
+      000091                        768 00107$:
+                                    769 ;	src/modbusRTU.c:35: for (j = 8; j != 0; j--) {
+      000091 1E               [12]  770 	dec	r6
+      000092 BE FF 01         [24]  771 	cjne	r6,#0xff,00142$
+      000095 1F               [12]  772 	dec	r7
+      000096                        773 00142$:
+      000096 EE               [12]  774 	mov	a,r6
+      000097 4F               [12]  775 	orl	a,r7
+      000098 70 D9            [24]  776 	jnz	00106$
+                                    777 ;	src/modbusRTU.c:33: for (i = 0; i < messageLength - 2; ++i) {
+      00009A 09               [12]  778 	inc	r1
+      00009B B9 00 9B         [24]  779 	cjne	r1,#0x00,00109$
+      00009E 0A               [12]  780 	inc	r2
+      00009F 80 98            [24]  781 	sjmp	00109$
+      0000A1                        782 00105$:
+                                    783 ;	src/modbusRTU.c:46: crcHigh = (crc & 0xFF) << 8;
+      0000A1 8B 06            [24]  784 	mov	ar6,r3
+      0000A3 8E 07            [24]  785 	mov	ar7,r6
+      0000A5 7E 00            [12]  786 	mov	r6,#0x00
+                                    787 ;	src/modbusRTU.c:47: crcLow = (crc & 0xFF00) >> 8;
+      0000A7 8C 03            [24]  788 	mov	ar3,r4
+      0000A9 7C 00            [12]  789 	mov	r4,#0x00
+                                    790 ;	src/modbusRTU.c:48: crcHigh |= crcLow;
+      0000AB EB               [12]  791 	mov	a,r3
+      0000AC 4E               [12]  792 	orl	a,r6
+      0000AD F5 82            [12]  793 	mov	dpl,a
+      0000AF EC               [12]  794 	mov	a,r4
+      0000B0 4F               [12]  795 	orl	a,r7
+      0000B1 F5 83            [12]  796 	mov	dph,a
+                                    797 ;	src/modbusRTU.c:51: return crc;
+                                    798 ;	src/modbusRTU.c:52: }
+      0000B3 22               [24]  799 	ret
+                                    800 ;------------------------------------------------------------
+                                    801 ;Allocation info for local variables in function 'check_crc'
+                                    802 ;------------------------------------------------------------
+                                    803 ;length                    Allocated with name '_check_crc_PARM_2'
+                                    804 ;rec_buff                  Allocated with name '_check_crc_rec_buff_65536_16'
+                                    805 ;crc                       Allocated to registers r0 r5 
+                                    806 ;crcHigh                   Allocated to registers r6 r7 
+                                    807 ;crcLow                    Allocated to registers r5 r4 
+                                    808 ;i                         Allocated with name '_check_crc_i_65536_17'
+                                    809 ;j                         Allocated to registers r6 r7 
+                                    810 ;------------------------------------------------------------
+                                    811 ;	src/modbusRTU.c:54: static uint8_t check_crc(unsigned char *rec_buff, int length)
+                                    812 ;	-----------------------------------------
+                                    813 ;	 function check_crc
+                                    814 ;	-----------------------------------------
+      0000B4                        815 _check_crc:
+      0000B4 85 82*02         [24]  816 	mov	_check_crc_rec_buff_65536_16,dpl
+      0000B7 85 83*03         [24]  817 	mov	(_check_crc_rec_buff_65536_16 + 1),dph
+      0000BA 85 F0*04         [24]  818 	mov	(_check_crc_rec_buff_65536_16 + 2),b
+                                    819 ;	src/modbusRTU.c:56: uint16_t crc = 0xFFFF;
+      0000BD 7B FF            [12]  820 	mov	r3,#0xff
+      0000BF 7C FF            [12]  821 	mov	r4,#0xff
+                                    822 ;	src/modbusRTU.c:61: for (i = 0; i < length - 2; ++i) {
+      0000C1 E5*00            [12]  823 	mov	a,_check_crc_PARM_2
+      0000C3 24 FE            [12]  824 	add	a,#0xfe
+      0000C5 F9               [12]  825 	mov	r1,a
+      0000C6 E5*01            [12]  826 	mov	a,(_check_crc_PARM_2 + 1)
+      0000C8 34 FF            [12]  827 	addc	a,#0xff
+      0000CA FA               [12]  828 	mov	r2,a
+      0000CB E4               [12]  829 	clr	a
+      0000CC F5*05            [12]  830 	mov	_check_crc_i_65536_17,a
+      0000CE F5*06            [12]  831 	mov	(_check_crc_i_65536_17 + 1),a
+      0000D0                        832 00113$:
+      0000D0 C3               [12]  833 	clr	c
+      0000D1 E5*05            [12]  834 	mov	a,_check_crc_i_65536_17
+      0000D3 99               [12]  835 	subb	a,r1
+      0000D4 E5*06            [12]  836 	mov	a,(_check_crc_i_65536_17 + 1)
+      0000D6 64 80            [12]  837 	xrl	a,#0x80
+      0000D8 8A F0            [24]  838 	mov	b,r2
+      0000DA 63 F0 80         [24]  839 	xrl	b,#0x80
+      0000DD 95 F0            [12]  840 	subb	a,b
+      0000DF 50 52            [24]  841 	jnc	00105$
+                                    842 ;	src/modbusRTU.c:62: crc ^= rec_buff[i];
+      0000E1 E5*05            [12]  843 	mov	a,_check_crc_i_65536_17
+      0000E3 25*02            [12]  844 	add	a,_check_crc_rec_buff_65536_16
+      0000E5 FD               [12]  845 	mov	r5,a
+      0000E6 E5*06            [12]  846 	mov	a,(_check_crc_i_65536_17 + 1)
+      0000E8 35*03            [12]  847 	addc	a,(_check_crc_rec_buff_65536_16 + 1)
+      0000EA FE               [12]  848 	mov	r6,a
+      0000EB AF*04            [24]  849 	mov	r7,(_check_crc_rec_buff_65536_16 + 2)
+      0000ED 8D 82            [24]  850 	mov	dpl,r5
+      0000EF 8E 83            [24]  851 	mov	dph,r6
+      0000F1 8F F0            [24]  852 	mov	b,r7
+      0000F3 12r00r00         [24]  853 	lcall	__gptrget
+      0000F6 FD               [12]  854 	mov	r5,a
+      0000F7 7F 00            [12]  855 	mov	r7,#0x00
+      0000F9 62 03            [12]  856 	xrl	ar3,a
+      0000FB EF               [12]  857 	mov	a,r7
+      0000FC 62 04            [12]  858 	xrl	ar4,a
+                                    859 ;	src/modbusRTU.c:63: for (j = 8; j != 0; --j) {
+      0000FE 7E 08            [12]  860 	mov	r6,#0x08
+      000100 7F 00            [12]  861 	mov	r7,#0x00
+      000102                        862 00110$:
+                                    863 ;	src/modbusRTU.c:64: if ((crc & 0x0001) != 0) {
+      000102 EB               [12]  864 	mov	a,r3
+      000103 30 E0 13         [24]  865 	jnb	acc.0,00102$
+                                    866 ;	src/modbusRTU.c:65: crc >>= 1;
+      000106 8B 00            [24]  867 	mov	ar0,r3
+      000108 EC               [12]  868 	mov	a,r4
+      000109 C3               [12]  869 	clr	c
+      00010A 13               [12]  870 	rrc	a
+      00010B C8               [12]  871 	xch	a,r0
+      00010C 13               [12]  872 	rrc	a
+      00010D C8               [12]  873 	xch	a,r0
+      00010E FD               [12]  874 	mov	r5,a
+                                    875 ;	src/modbusRTU.c:66: crc ^= 0xA001;
+      00010F 74 01            [12]  876 	mov	a,#0x01
+      000111 68               [12]  877 	xrl	a,r0
+      000112 FB               [12]  878 	mov	r3,a
+      000113 74 A0            [12]  879 	mov	a,#0xa0
+      000115 6D               [12]  880 	xrl	a,r5
+      000116 FC               [12]  881 	mov	r4,a
+      000117 80 07            [24]  882 	sjmp	00111$
+      000119                        883 00102$:
+                                    884 ;	src/modbusRTU.c:68: crc >>= 1;
+      000119 EC               [12]  885 	mov	a,r4
+      00011A C3               [12]  886 	clr	c
+      00011B 13               [12]  887 	rrc	a
+      00011C CB               [12]  888 	xch	a,r3
+      00011D 13               [12]  889 	rrc	a
+      00011E CB               [12]  890 	xch	a,r3
+      00011F FC               [12]  891 	mov	r4,a
+      000120                        892 00111$:
+                                    893 ;	src/modbusRTU.c:63: for (j = 8; j != 0; --j) {
+      000120 1E               [12]  894 	dec	r6
+      000121 BE FF 01         [24]  895 	cjne	r6,#0xff,00156$
+      000124 1F               [12]  896 	dec	r7
+      000125                        897 00156$:
+      000125 EE               [12]  898 	mov	a,r6
+      000126 4F               [12]  899 	orl	a,r7
+      000127 70 D9            [24]  900 	jnz	00110$
+                                    901 ;	src/modbusRTU.c:61: for (i = 0; i < length - 2; ++i) {
+      000129 05*05            [12]  902 	inc	_check_crc_i_65536_17
+      00012B E4               [12]  903 	clr	a
+      00012C B5*05 A1         [24]  904 	cjne	a,_check_crc_i_65536_17,00113$
+      00012F 05*06            [12]  905 	inc	(_check_crc_i_65536_17 + 1)
+      000131 80 9D            [24]  906 	sjmp	00113$
+      000133                        907 00105$:
+                                    908 ;	src/modbusRTU.c:74: crcHigh = (crc & 0xFF);
+      000133 8B 06            [24]  909 	mov	ar6,r3
+      000135 7F 00            [12]  910 	mov	r7,#0x00
+                                    911 ;	src/modbusRTU.c:75: crcLow = (crc & 0xFF00) >> 8;
+      000137 8C 05            [24]  912 	mov	ar5,r4
+      000139 7C 00            [12]  913 	mov	r4,#0x00
+                                    914 ;	src/modbusRTU.c:77: if ((crcHigh == rec_buff[i]) && (crcLow == rec_buff[i + 1]))
+      00013B E5*05            [12]  915 	mov	a,_check_crc_i_65536_17
+      00013D 25*02            [12]  916 	add	a,_check_crc_rec_buff_65536_16
+      00013F F9               [12]  917 	mov	r1,a
+      000140 E5*06            [12]  918 	mov	a,(_check_crc_i_65536_17 + 1)
+      000142 35*03            [12]  919 	addc	a,(_check_crc_rec_buff_65536_16 + 1)
+      000144 FA               [12]  920 	mov	r2,a
+      000145 AB*04            [24]  921 	mov	r3,(_check_crc_rec_buff_65536_16 + 2)
+      000147 89 82            [24]  922 	mov	dpl,r1
+      000149 8A 83            [24]  923 	mov	dph,r2
+      00014B 8B F0            [24]  924 	mov	b,r3
+      00014D 12r00r00         [24]  925 	lcall	__gptrget
+      000150 F9               [12]  926 	mov	r1,a
+      000151 7B 00            [12]  927 	mov	r3,#0x00
+      000153 EE               [12]  928 	mov	a,r6
+      000154 B5 01 2F         [24]  929 	cjne	a,ar1,00107$
+      000157 EF               [12]  930 	mov	a,r7
+      000158 B5 03 2B         [24]  931 	cjne	a,ar3,00107$
+      00015B 74 01            [12]  932 	mov	a,#0x01
+      00015D 25*05            [12]  933 	add	a,_check_crc_i_65536_17
+      00015F FE               [12]  934 	mov	r6,a
+      000160 E4               [12]  935 	clr	a
+      000161 35*06            [12]  936 	addc	a,(_check_crc_i_65536_17 + 1)
+      000163 FF               [12]  937 	mov	r7,a
+      000164 EE               [12]  938 	mov	a,r6
+      000165 25*02            [12]  939 	add	a,_check_crc_rec_buff_65536_16
+      000167 FE               [12]  940 	mov	r6,a
+      000168 EF               [12]  941 	mov	a,r7
+      000169 35*03            [12]  942 	addc	a,(_check_crc_rec_buff_65536_16 + 1)
+      00016B FF               [12]  943 	mov	r7,a
+      00016C AB*04            [24]  944 	mov	r3,(_check_crc_rec_buff_65536_16 + 2)
+      00016E 8E 82            [24]  945 	mov	dpl,r6
+      000170 8F 83            [24]  946 	mov	dph,r7
+      000172 8B F0            [24]  947 	mov	b,r3
+      000174 12r00r00         [24]  948 	lcall	__gptrget
+      000177 FE               [12]  949 	mov	r6,a
+      000178 7F 00            [12]  950 	mov	r7,#0x00
+      00017A ED               [12]  951 	mov	a,r5
+      00017B B5 06 08         [24]  952 	cjne	a,ar6,00107$
+      00017E EC               [12]  953 	mov	a,r4
+      00017F B5 07 04         [24]  954 	cjne	a,ar7,00107$
+                                    955 ;	src/modbusRTU.c:78: return 1;
+      000182 75 82 01         [24]  956 	mov	dpl,#0x01
+      000185 22               [24]  957 	ret
+      000186                        958 00107$:
+                                    959 ;	src/modbusRTU.c:80: return 0;
+      000186 75 82 00         [24]  960 	mov	dpl,#0x00
+                                    961 ;	src/modbusRTU.c:81: }
+      000189 22               [24]  962 	ret
+                                    963 ;------------------------------------------------------------
+                                    964 ;Allocation info for local variables in function 'function_MODBUS'
+                                    965 ;------------------------------------------------------------
+                                    966 ;length                    Allocated with name '_function_MODBUS_PARM_2'
+                                    967 ;rec_buff                  Allocated to registers r5 r6 r7 
+                                    968 ;------------------------------------------------------------
+                                    969 ;	src/modbusRTU.c:84: void function_MODBUS(unsigned char *rec_buff, int length){
+                                    970 ;	-----------------------------------------
+                                    971 ;	 function function_MODBUS
+                                    972 ;	-----------------------------------------
+      00018A                        973 _function_MODBUS:
+      00018A AD 82            [24]  974 	mov	r5,dpl
+      00018C AE 83            [24]  975 	mov	r6,dph
+      00018E AF F0            [24]  976 	mov	r7,b
+                                    977 ;	src/modbusRTU.c:85: if (check_crc(rec_buff, length) == 1){
+      000190 85*30*00         [24]  978 	mov	_check_crc_PARM_2,_function_MODBUS_PARM_2
+      000193 85*31*01         [24]  979 	mov	(_check_crc_PARM_2 + 1),(_function_MODBUS_PARM_2 + 1)
+      000196 8D 82            [24]  980 	mov	dpl,r5
+      000198 8E 83            [24]  981 	mov	dph,r6
+      00019A 8F F0            [24]  982 	mov	b,r7
+      00019C C0 07            [24]  983 	push	ar7
+      00019E C0 06            [24]  984 	push	ar6
+      0001A0 C0 05            [24]  985 	push	ar5
+      0001A2 12r00rB4         [24]  986 	lcall	_check_crc
+      0001A5 AC 82            [24]  987 	mov	r4,dpl
+      0001A7 D0 05            [24]  988 	pop	ar5
+      0001A9 D0 06            [24]  989 	pop	ar6
+      0001AB D0 07            [24]  990 	pop	ar7
+      0001AD BC 01 55         [24]  991 	cjne	r4,#0x01,00112$
+                                    992 ;	src/modbusRTU.c:86: switch(rec_buff[1]){
+      0001B0 74 01            [12]  993 	mov	a,#0x01
+      0001B2 2D               [12]  994 	add	a,r5
+      0001B3 FA               [12]  995 	mov	r2,a
+      0001B4 E4               [12]  996 	clr	a
+      0001B5 3E               [12]  997 	addc	a,r6
+      0001B6 FB               [12]  998 	mov	r3,a
+      0001B7 8F 04            [24]  999 	mov	ar4,r7
+      0001B9 8A 82            [24] 1000 	mov	dpl,r2
+      0001BB 8B 83            [24] 1001 	mov	dph,r3
+      0001BD 8C F0            [24] 1002 	mov	b,r4
+      0001BF 12r00r00         [24] 1003 	lcall	__gptrget
+      0001C2 FC               [12] 1004 	mov	r4,a
+      0001C3 BC 01 02         [24] 1005 	cjne	r4,#0x01,00149$
+      0001C6 80 1E            [24] 1006 	sjmp	00101$
+      0001C8                       1007 00149$:
+      0001C8 BC 02 02         [24] 1008 	cjne	r4,#0x02,00150$
+      0001CB 80 38            [24] 1009 	sjmp	00112$
+      0001CD                       1010 00150$:
+      0001CD BC 03 02         [24] 1011 	cjne	r4,#0x03,00151$
+      0001D0 80 33            [24] 1012 	sjmp	00112$
+      0001D2                       1013 00151$:
+      0001D2 BC 04 02         [24] 1014 	cjne	r4,#0x04,00152$
+      0001D5 80 2E            [24] 1015 	sjmp	00112$
+      0001D7                       1016 00152$:
+      0001D7 BC 05 02         [24] 1017 	cjne	r4,#0x05,00153$
+      0001DA 80 15            [24] 1018 	sjmp	00105$
+      0001DC                       1019 00153$:
+      0001DC BC 06 02         [24] 1020 	cjne	r4,#0x06,00154$
+      0001DF 80 24            [24] 1021 	sjmp	00112$
+      0001E1                       1022 00154$:
+                                   1023 ;	src/modbusRTU.c:87: case 1:	
+      0001E1 BC 0F 21         [24] 1024 	cjne	r4,#0x0f,00112$
+      0001E4 80 16            [24] 1025 	sjmp	00107$
+      0001E6                       1026 00101$:
+                                   1027 ;	src/modbusRTU.c:88: read_coil(rec_buff);
+      0001E6 8D 82            [24] 1028 	mov	dpl,r5
+      0001E8 8E 83            [24] 1029 	mov	dph,r6
+      0001EA 8F F0            [24] 1030 	mov	b,r7
+      0001EC 12r02r0C         [24] 1031 	lcall	_read_coil
+                                   1032 ;	src/modbusRTU.c:89: break;
+                                   1033 ;	src/modbusRTU.c:99: case 5:	
+      0001EF 80 14            [24] 1034 	sjmp	00112$
+      0001F1                       1035 00105$:
+                                   1036 ;	src/modbusRTU.c:100: force_coil_bit(rec_buff);
+      0001F1 8D 82            [24] 1037 	mov	dpl,r5
+      0001F3 8E 83            [24] 1038 	mov	dph,r6
+      0001F5 8F F0            [24] 1039 	mov	b,r7
+      0001F7 12r05r37         [24] 1040 	lcall	_force_coil_bit
+                                   1041 ;	src/modbusRTU.c:101: break;
+                                   1042 ;	src/modbusRTU.c:105: case 15:
+      0001FA 80 09            [24] 1043 	sjmp	00112$
+      0001FC                       1044 00107$:
+                                   1045 ;	src/modbusRTU.c:106: force_coil_mul(rec_buff);
+      0001FC 8D 82            [24] 1046 	mov	dpl,r5
+      0001FE 8E 83            [24] 1047 	mov	dph,r6
+      000200 8F F0            [24] 1048 	mov	b,r7
+      000202 12r06r7E         [24] 1049 	lcall	_force_coil_mul
+                                   1050 ;	src/modbusRTU.c:113: }
+      000205                       1051 00112$:
+                                   1052 ;	src/modbusRTU.c:115: rec_stat = PACK_START;
+      000205 75*00 01         [24] 1053 	mov	_rec_stat,#0x01
+                                   1054 ;	src/modbusRTU.c:116: rec_num = 0;
+      000208 75*01 00         [24] 1055 	mov	_rec_num,#0x00
+                                   1056 ;	src/modbusRTU.c:117: }
+      00020B 22               [24] 1057 	ret
+                                   1058 ;------------------------------------------------------------
+                                   1059 ;Allocation info for local variables in function 'read_coil'
+                                   1060 ;------------------------------------------------------------
+                                   1061 ;rec_buff                  Allocated with name '_read_coil_rec_buff_65536_28'
+                                   1062 ;read_address              Allocated with name '_read_coil_read_address_131072_31'
+                                   1063 ;read_length               Allocated to registers r3 r4 
+                                   1064 ;crc                       Allocated to registers r6 r7 
+                                   1065 ;num_of_bytes              Allocated with name '_read_coil_num_of_bytes_262144_34'
+                                   1066 ;remainder                 Allocated with name '_read_coil_remainder_262144_34'
+                                   1067 ;i                         Allocated with name '_read_coil_i_262144_34'
+                                   1068 ;j                         Allocated with name '_read_coil_j_262144_34'
+                                   1069 ;k                         Allocated with name '_read_coil_k_262144_34'
+                                   1070 ;l                         Allocated with name '_read_coil_l_262144_34'
+                                   1071 ;lsb                       Allocated with name '_read_coil_lsb_262144_34'
+                                   1072 ;sloc0                     Allocated with name '_read_coil_sloc0_1_0'
+                                   1073 ;sloc1                     Allocated with name '_read_coil_sloc1_1_0'
+                                   1074 ;------------------------------------------------------------
+                                   1075 ;	src/modbusRTU.c:119: void read_coil(unsigned char *rec_buff){
+                                   1076 ;	-----------------------------------------
+                                   1077 ;	 function read_coil
+                                   1078 ;	-----------------------------------------
+      00020C                       1079 _read_coil:
+      00020C 85 82*32         [24] 1080 	mov	_read_coil_rec_buff_65536_28,dpl
+      00020F 85 83*33         [24] 1081 	mov	(_read_coil_rec_buff_65536_28 + 1),dph
+      000212 85 F0*34         [24] 1082 	mov	(_read_coil_rec_buff_65536_28 + 2),b
+                                   1083 ;	src/modbusRTU.c:120: if (rec_num != 8){
+      000215 74 08            [12] 1084 	mov	a,#0x08
+      000217 B5*01 02         [24] 1085 	cjne	a,_rec_num,00213$
+      00021A 80 4A            [24] 1086 	sjmp	00126$
+      00021C                       1087 00213$:
+                                   1088 ;	src/modbusRTU.c:121: rec_buff[1] = rec_buff[1] | (1 << 7);
+      00021C 74 01            [12] 1089 	mov	a,#0x01
+      00021E 25*32            [12] 1090 	add	a,_read_coil_rec_buff_65536_28
+      000220 FA               [12] 1091 	mov	r2,a
+      000221 E4               [12] 1092 	clr	a
+      000222 35*33            [12] 1093 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      000224 FB               [12] 1094 	mov	r3,a
+      000225 AC*34            [24] 1095 	mov	r4,(_read_coil_rec_buff_65536_28 + 2)
+      000227 8A 82            [24] 1096 	mov	dpl,r2
+      000229 8B 83            [24] 1097 	mov	dph,r3
+      00022B 8C F0            [24] 1098 	mov	b,r4
+      00022D 12r00r00         [24] 1099 	lcall	__gptrget
+      000230 FF               [12] 1100 	mov	r7,a
+      000231 43 07 80         [24] 1101 	orl	ar7,#0x80
+      000234 8A 82            [24] 1102 	mov	dpl,r2
+      000236 8B 83            [24] 1103 	mov	dph,r3
+      000238 8C F0            [24] 1104 	mov	b,r4
+      00023A EF               [12] 1105 	mov	a,r7
+      00023B 12r00r00         [24] 1106 	lcall	__gptrput
+                                   1107 ;	src/modbusRTU.c:122: rec_buff[2] = ERROR_CODE_OTHER_ERROR;
+      00023E 74 02            [12] 1108 	mov	a,#0x02
+      000240 25*32            [12] 1109 	add	a,_read_coil_rec_buff_65536_28
+      000242 FD               [12] 1110 	mov	r5,a
+      000243 E4               [12] 1111 	clr	a
+      000244 35*33            [12] 1112 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      000246 FE               [12] 1113 	mov	r6,a
+      000247 AF*34            [24] 1114 	mov	r7,(_read_coil_rec_buff_65536_28 + 2)
+      000249 8D 82            [24] 1115 	mov	dpl,r5
+      00024B 8E 83            [24] 1116 	mov	dph,r6
+      00024D 8F F0            [24] 1117 	mov	b,r7
+      00024F 74 07            [12] 1118 	mov	a,#0x07
+      000251 12r00r00         [24] 1119 	lcall	__gptrput
+                                   1120 ;	src/modbusRTU.c:123: PutNChar(rec_buff,3);
+      000254 75*00 03         [24] 1121 	mov	_PutNChar_PARM_2,#0x03
+      000257 75*01 00         [24] 1122 	mov	(_PutNChar_PARM_2 + 1),#0x00
+      00025A 85*32 82         [24] 1123 	mov	dpl,_read_coil_rec_buff_65536_28
+      00025D 85*33 83         [24] 1124 	mov	dph,(_read_coil_rec_buff_65536_28 + 1)
+      000260 85*34 F0         [24] 1125 	mov	b,(_read_coil_rec_buff_65536_28 + 2)
+      000263 02r00r00         [24] 1126 	ljmp	_PutNChar
+      000266                       1127 00126$:
+                                   1128 ;	src/modbusRTU.c:125: unsigned int read_address = ((rec_buff[2] << 8) | rec_buff[3]);
+      000266 74 02            [12] 1129 	mov	a,#0x02
+      000268 25*32            [12] 1130 	add	a,_read_coil_rec_buff_65536_28
+      00026A F5*46            [12] 1131 	mov	_read_coil_sloc1_1_0,a
+      00026C E4               [12] 1132 	clr	a
+      00026D 35*33            [12] 1133 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      00026F F5*47            [12] 1134 	mov	(_read_coil_sloc1_1_0 + 1),a
+      000271 85*34*48         [24] 1135 	mov	(_read_coil_sloc1_1_0 + 2),(_read_coil_rec_buff_65536_28 + 2)
+      000274 85*46 82         [24] 1136 	mov	dpl,_read_coil_sloc1_1_0
+      000277 85*47 83         [24] 1137 	mov	dph,(_read_coil_sloc1_1_0 + 1)
+      00027A 85*48 F0         [24] 1138 	mov	b,(_read_coil_sloc1_1_0 + 2)
+      00027D 12r00r00         [24] 1139 	lcall	__gptrget
+      000280 FC               [12] 1140 	mov	r4,a
+      000281 7B 00            [12] 1141 	mov	r3,#0x00
+      000283 8C*45            [24] 1142 	mov	(_read_coil_sloc0_1_0 + 1),r4
+                                   1143 ;	1-genFromRTrack replaced	mov	_read_coil_sloc0_1_0,#0x00
+      000285 8B*44            [24] 1144 	mov	_read_coil_sloc0_1_0,r3
+      000287 74 03            [12] 1145 	mov	a,#0x03
+      000289 25*32            [12] 1146 	add	a,_read_coil_rec_buff_65536_28
+      00028B FA               [12] 1147 	mov	r2,a
+      00028C E4               [12] 1148 	clr	a
+      00028D 35*33            [12] 1149 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      00028F FB               [12] 1150 	mov	r3,a
+      000290 AC*34            [24] 1151 	mov	r4,(_read_coil_rec_buff_65536_28 + 2)
+      000292 8A 82            [24] 1152 	mov	dpl,r2
+      000294 8B 83            [24] 1153 	mov	dph,r3
+      000296 8C F0            [24] 1154 	mov	b,r4
+      000298 12r00r00         [24] 1155 	lcall	__gptrget
+      00029B 7C 00            [12] 1156 	mov	r4,#0x00
+      00029D 45*44            [12] 1157 	orl	a,_read_coil_sloc0_1_0
+      00029F F5*35            [12] 1158 	mov	_read_coil_read_address_131072_31,a
+      0002A1 EC               [12] 1159 	mov	a,r4
+      0002A2 45*45            [12] 1160 	orl	a,(_read_coil_sloc0_1_0 + 1)
+      0002A4 F5*36            [12] 1161 	mov	(_read_coil_read_address_131072_31 + 1),a
+                                   1162 ;	src/modbusRTU.c:126: unsigned int read_length = ((rec_buff[4] << 8) | rec_buff[5]);
+      0002A6 74 04            [12] 1163 	mov	a,#0x04
+      0002A8 25*32            [12] 1164 	add	a,_read_coil_rec_buff_65536_28
+      0002AA FA               [12] 1165 	mov	r2,a
+      0002AB E4               [12] 1166 	clr	a
+      0002AC 35*33            [12] 1167 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      0002AE FB               [12] 1168 	mov	r3,a
+      0002AF AC*34            [24] 1169 	mov	r4,(_read_coil_rec_buff_65536_28 + 2)
+      0002B1 8A 82            [24] 1170 	mov	dpl,r2
+      0002B3 8B 83            [24] 1171 	mov	dph,r3
+      0002B5 8C F0            [24] 1172 	mov	b,r4
+      0002B7 12r00r00         [24] 1173 	lcall	__gptrget
+      0002BA FA               [12] 1174 	mov	r2,a
+      0002BB 7C 00            [12] 1175 	mov	r4,#0x00
+      0002BD 8A*45            [24] 1176 	mov	(_read_coil_sloc0_1_0 + 1),r2
+                                   1177 ;	1-genFromRTrack replaced	mov	_read_coil_sloc0_1_0,#0x00
+      0002BF 8C*44            [24] 1178 	mov	_read_coil_sloc0_1_0,r4
+      0002C1 74 05            [12] 1179 	mov	a,#0x05
+      0002C3 25*32            [12] 1180 	add	a,_read_coil_rec_buff_65536_28
+      0002C5 FA               [12] 1181 	mov	r2,a
+      0002C6 E4               [12] 1182 	clr	a
+      0002C7 35*33            [12] 1183 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      0002C9 FB               [12] 1184 	mov	r3,a
+      0002CA AC*34            [24] 1185 	mov	r4,(_read_coil_rec_buff_65536_28 + 2)
+      0002CC 8A 82            [24] 1186 	mov	dpl,r2
+      0002CE 8B 83            [24] 1187 	mov	dph,r3
+      0002D0 8C F0            [24] 1188 	mov	b,r4
+      0002D2 12r00r00         [24] 1189 	lcall	__gptrget
+      0002D5 FA               [12] 1190 	mov	r2,a
+      0002D6 7C 00            [12] 1191 	mov	r4,#0x00
+      0002D8 45*44            [12] 1192 	orl	a,_read_coil_sloc0_1_0
+      0002DA FB               [12] 1193 	mov	r3,a
+      0002DB EC               [12] 1194 	mov	a,r4
+      0002DC 45*45            [12] 1195 	orl	a,(_read_coil_sloc0_1_0 + 1)
+      0002DE FC               [12] 1196 	mov	r4,a
+                                   1197 ;	src/modbusRTU.c:128: if (read_address >= MIN_READ_COILS && read_address <= MAX_READ_COILS){
+      0002DF C3               [12] 1198 	clr	c
+      0002E0 74 FF            [12] 1199 	mov	a,#0xff
+      0002E2 95*35            [12] 1200 	subb	a,_read_coil_read_address_131072_31
+      0002E4 74 0F            [12] 1201 	mov	a,#0x0f
+      0002E6 95*36            [12] 1202 	subb	a,(_read_coil_read_address_131072_31 + 1)
+      0002E8 50 01            [24] 1203 	jnc	00214$
+      0002EA 22               [24] 1204 	ret
+      0002EB                       1205 00214$:
+                                   1206 ;	src/modbusRTU.c:129: if (read_length > MAX_READ_COILS_LENGTH) //read length in the scope
+      0002EB C3               [12] 1207 	clr	c
+      0002EC 74 14            [12] 1208 	mov	a,#0x14
+      0002EE 9B               [12] 1209 	subb	a,r3
+      0002EF E4               [12] 1210 	clr	a
+      0002F0 9C               [12] 1211 	subb	a,r4
+      0002F1 50 41            [24] 1212 	jnc	00120$
+                                   1213 ;	src/modbusRTU.c:131: rec_buff[1] = rec_buff[1] | (1 << 7);
+      0002F3 74 01            [12] 1214 	mov	a,#0x01
+      0002F5 25*32            [12] 1215 	add	a,_read_coil_rec_buff_65536_28
+      0002F7 FA               [12] 1216 	mov	r2,a
+      0002F8 E4               [12] 1217 	clr	a
+      0002F9 35*33            [12] 1218 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      0002FB FE               [12] 1219 	mov	r6,a
+      0002FC AF*34            [24] 1220 	mov	r7,(_read_coil_rec_buff_65536_28 + 2)
+      0002FE 8A 82            [24] 1221 	mov	dpl,r2
+      000300 8E 83            [24] 1222 	mov	dph,r6
+      000302 8F F0            [24] 1223 	mov	b,r7
+      000304 12r00r00         [24] 1224 	lcall	__gptrget
+      000307 FD               [12] 1225 	mov	r5,a
+      000308 43 05 80         [24] 1226 	orl	ar5,#0x80
+      00030B 8A 82            [24] 1227 	mov	dpl,r2
+      00030D 8E 83            [24] 1228 	mov	dph,r6
+      00030F 8F F0            [24] 1229 	mov	b,r7
+      000311 ED               [12] 1230 	mov	a,r5
+      000312 12r00r00         [24] 1231 	lcall	__gptrput
+                                   1232 ;	src/modbusRTU.c:132: rec_buff[2] = ERROR_CODE_DATA_ERROR;
+      000315 85*46 82         [24] 1233 	mov	dpl,_read_coil_sloc1_1_0
+      000318 85*47 83         [24] 1234 	mov	dph,(_read_coil_sloc1_1_0 + 1)
+      00031B 85*48 F0         [24] 1235 	mov	b,(_read_coil_sloc1_1_0 + 2)
+      00031E 74 03            [12] 1236 	mov	a,#0x03
+      000320 12r00r00         [24] 1237 	lcall	__gptrput
+                                   1238 ;	src/modbusRTU.c:133: PutNChar(rec_buff,3);
+                                   1239 ;	1-genFromRTrack replaced	mov	_PutNChar_PARM_2,#0x03
+      000323 F5*00            [12] 1240 	mov	_PutNChar_PARM_2,a
+      000325 75*01 00         [24] 1241 	mov	(_PutNChar_PARM_2 + 1),#0x00
+      000328 85*32 82         [24] 1242 	mov	dpl,_read_coil_rec_buff_65536_28
+      00032B 85*33 83         [24] 1243 	mov	dph,(_read_coil_rec_buff_65536_28 + 1)
+      00032E 85*34 F0         [24] 1244 	mov	b,(_read_coil_rec_buff_65536_28 + 2)
+      000331 02r00r00         [24] 1245 	ljmp	_PutNChar
+      000334                       1246 00120$:
+                                   1247 ;	src/modbusRTU.c:135: unsigned int num_of_bytes = read_length / 8;
+      000334 8B*37            [24] 1248 	mov	_read_coil_num_of_bytes_262144_34,r3
+      000336 EC               [12] 1249 	mov	a,r4
+      000337 C4               [12] 1250 	swap	a
+      000338 23               [12] 1251 	rl	a
+      000339 C5*37            [12] 1252 	xch	a,_read_coil_num_of_bytes_262144_34
+      00033B C4               [12] 1253 	swap	a
+      00033C 23               [12] 1254 	rl	a
+      00033D 54 1F            [12] 1255 	anl	a,#0x1f
+      00033F 65*37            [12] 1256 	xrl	a,_read_coil_num_of_bytes_262144_34
+      000341 C5*37            [12] 1257 	xch	a,_read_coil_num_of_bytes_262144_34
+      000343 54 1F            [12] 1258 	anl	a,#0x1f
+      000345 C5*37            [12] 1259 	xch	a,_read_coil_num_of_bytes_262144_34
+      000347 65*37            [12] 1260 	xrl	a,_read_coil_num_of_bytes_262144_34
+      000349 C5*37            [12] 1261 	xch	a,_read_coil_num_of_bytes_262144_34
+      00034B F5*38            [12] 1262 	mov	(_read_coil_num_of_bytes_262144_34 + 1),a
+                                   1263 ;	src/modbusRTU.c:136: unsigned int remainder = read_length % 8;
+      00034D 53 03 07         [24] 1264 	anl	ar3,#0x07
+      000350 7C 00            [12] 1265 	mov	r4,#0x00
+      000352 8B*39            [24] 1266 	mov	_read_coil_remainder_262144_34,r3
+      000354 8C*3A            [24] 1267 	mov	(_read_coil_remainder_262144_34 + 1),r4
+                                   1268 ;	src/modbusRTU.c:139: if (remainder) {
+      000356 EB               [12] 1269 	mov	a,r3
+      000357 4C               [12] 1270 	orl	a,r4
+      000358 60 08            [24] 1271 	jz	00102$
+                                   1272 ;	src/modbusRTU.c:140: num_of_bytes += 1;
+      00035A 05*37            [12] 1273 	inc	_read_coil_num_of_bytes_262144_34
+      00035C E4               [12] 1274 	clr	a
+      00035D B5*37 02         [24] 1275 	cjne	a,_read_coil_num_of_bytes_262144_34,00217$
+      000360 05*38            [12] 1276 	inc	(_read_coil_num_of_bytes_262144_34 + 1)
+      000362                       1277 00217$:
+      000362                       1278 00102$:
+                                   1279 ;	src/modbusRTU.c:142: rec_buff[1] = 0x01;
+      000362 74 01            [12] 1280 	mov	a,#0x01
+      000364 25*32            [12] 1281 	add	a,_read_coil_rec_buff_65536_28
+      000366 FB               [12] 1282 	mov	r3,a
+      000367 E4               [12] 1283 	clr	a
+      000368 35*33            [12] 1284 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      00036A FC               [12] 1285 	mov	r4,a
+      00036B AF*34            [24] 1286 	mov	r7,(_read_coil_rec_buff_65536_28 + 2)
+      00036D 8B 82            [24] 1287 	mov	dpl,r3
+      00036F 8C 83            [24] 1288 	mov	dph,r4
+      000371 8F F0            [24] 1289 	mov	b,r7
+      000373 74 01            [12] 1290 	mov	a,#0x01
+      000375 12r00r00         [24] 1291 	lcall	__gptrput
+                                   1292 ;	src/modbusRTU.c:143: rec_buff[2] = num_of_bytes;
+      000378 AE*37            [24] 1293 	mov	r6,_read_coil_num_of_bytes_262144_34
+      00037A 85*46 82         [24] 1294 	mov	dpl,_read_coil_sloc1_1_0
+      00037D 85*47 83         [24] 1295 	mov	dph,(_read_coil_sloc1_1_0 + 1)
+      000380 85*48 F0         [24] 1296 	mov	b,(_read_coil_sloc1_1_0 + 2)
+      000383 EE               [12] 1297 	mov	a,r6
+      000384 12r00r00         [24] 1298 	lcall	__gptrput
+                                   1299 ;	src/modbusRTU.c:144: l = read_address;
+      000387 85*35*41         [24] 1300 	mov	_read_coil_l_262144_34,_read_coil_read_address_131072_31
+      00038A 85*36*42         [24] 1301 	mov	(_read_coil_l_262144_34 + 1),(_read_coil_read_address_131072_31 + 1)
+                                   1302 ;	src/modbusRTU.c:145: k = 3;
+      00038D 75*44 03         [24] 1303 	mov	_read_coil_sloc0_1_0,#0x03
+      000390 75*45 00         [24] 1304 	mov	(_read_coil_sloc0_1_0 + 1),#0x00
+                                   1305 ;	src/modbusRTU.c:146: for (i = num_of_bytes; i != 0; --i) {
+      000393 85*37*3B         [24] 1306 	mov	_read_coil_i_262144_34,_read_coil_num_of_bytes_262144_34
+      000396 85*38*3C         [24] 1307 	mov	(_read_coil_i_262144_34 + 1),(_read_coil_num_of_bytes_262144_34 + 1)
+      000399                       1308 00134$:
+      000399 E5*3B            [12] 1309 	mov	a,_read_coil_i_262144_34
+      00039B 45*3C            [12] 1310 	orl	a,(_read_coil_i_262144_34 + 1)
+      00039D 70 03            [24] 1311 	jnz	00218$
+      00039F 02r04rD0         [24] 1312 	ljmp	00118$
+      0003A2                       1313 00218$:
+                                   1314 ;	src/modbusRTU.c:147: if (i > 1) {
+      0003A2 C3               [12] 1315 	clr	c
+      0003A3 74 01            [12] 1316 	mov	a,#0x01
+      0003A5 95*3B            [12] 1317 	subb	a,_read_coil_i_262144_34
+      0003A7 E4               [12] 1318 	clr	a
+      0003A8 95*3C            [12] 1319 	subb	a,(_read_coil_i_262144_34 + 1)
+      0003AA 40 03            [24] 1320 	jc	00219$
+      0003AC 02r04r3E         [24] 1321 	ljmp	00151$
+      0003AF                       1322 00219$:
+                                   1323 ;	src/modbusRTU.c:148: for (j = 0; j != 8; ++j) {
+      0003AF 85*41*46         [24] 1324 	mov	_read_coil_sloc1_1_0,_read_coil_l_262144_34
+      0003B2 85*42*47         [24] 1325 	mov	(_read_coil_sloc1_1_0 + 1),(_read_coil_l_262144_34 + 1)
+      0003B5 E4               [12] 1326 	clr	a
+      0003B6 F5*3D            [12] 1327 	mov	_read_coil_j_262144_34,a
+      0003B8 F5*3E            [12] 1328 	mov	(_read_coil_j_262144_34 + 1),a
+      0003BA                       1329 00128$:
+                                   1330 ;	src/modbusRTU.c:149: if (l >= ARRAY_LENGTH(Coils))
+      0003BA C3               [12] 1331 	clr	c
+      0003BB E5*46            [12] 1332 	mov	a,_read_coil_sloc1_1_0
+      0003BD 94 0A            [12] 1333 	subb	a,#0x0a
+      0003BF E5*47            [12] 1334 	mov	a,(_read_coil_sloc1_1_0 + 1)
+      0003C1 94 00            [12] 1335 	subb	a,#0x00
+      0003C3 40 01            [24] 1336 	jc	00104$
+                                   1337 ;	src/modbusRTU.c:150: return;
+      0003C5 22               [24] 1338 	ret
+      0003C6                       1339 00104$:
+                                   1340 ;	src/modbusRTU.c:151: if (Coils[l]) {
+      0003C6 E5*46            [12] 1341 	mov	a,_read_coil_sloc1_1_0
+      0003C8 25*46            [12] 1342 	add	a,_read_coil_sloc1_1_0
+      0003CA FA               [12] 1343 	mov	r2,a
+      0003CB E5*47            [12] 1344 	mov	a,(_read_coil_sloc1_1_0 + 1)
+      0003CD 33               [12] 1345 	rlc	a
+      0003CE EA               [12] 1346 	mov	a,r2
+      0003CF 24r16            [12] 1347 	add	a,#_Coils
+      0003D1 F9               [12] 1348 	mov	r1,a
+      0003D2 87 02            [24] 1349 	mov	ar2,@r1
+      0003D4 09               [12] 1350 	inc	r1
+      0003D5 87 05            [24] 1351 	mov	ar5,@r1
+      0003D7 19               [12] 1352 	dec	r1
+      0003D8 EA               [12] 1353 	mov	a,r2
+      0003D9 4D               [12] 1354 	orl	a,r5
+                                   1355 ;	src/modbusRTU.c:152: lsb = 1;
+                                   1356 ;	src/modbusRTU.c:154: lsb = 0;
+      0003DA 60 02            [24] 1357 	jz	00106$
+      0003DC 74 01            [12] 1358 	mov	a,#0x01
+      0003DE                       1359 00106$:
+      0003DE FD               [12] 1360 	mov	r5,a
+                                   1361 ;	src/modbusRTU.c:156: rec_buff[k] ^= (lsb << j);
+      0003DF E5*44            [12] 1362 	mov	a,_read_coil_sloc0_1_0
+      0003E1 25*32            [12] 1363 	add	a,_read_coil_rec_buff_65536_28
+      0003E3 FA               [12] 1364 	mov	r2,a
+      0003E4 E5*45            [12] 1365 	mov	a,(_read_coil_sloc0_1_0 + 1)
+      0003E6 35*33            [12] 1366 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      0003E8 FE               [12] 1367 	mov	r6,a
+      0003E9 AF*34            [24] 1368 	mov	r7,(_read_coil_rec_buff_65536_28 + 2)
+      0003EB 8A 82            [24] 1369 	mov	dpl,r2
+      0003ED 8E 83            [24] 1370 	mov	dph,r6
+      0003EF 8F F0            [24] 1371 	mov	b,r7
+      0003F1 12r00r00         [24] 1372 	lcall	__gptrget
+      0003F4 FC               [12] 1373 	mov	r4,a
+      0003F5 AB*3D            [24] 1374 	mov	r3,_read_coil_j_262144_34
+      0003F7 8B F0            [24] 1375 	mov	b,r3
+      0003F9 05 F0            [12] 1376 	inc	b
+      0003FB ED               [12] 1377 	mov	a,r5
+      0003FC 80 02            [24] 1378 	sjmp	00224$
+      0003FE                       1379 00222$:
+      0003FE 25 E0            [12] 1380 	add	a,acc
+      000400                       1381 00224$:
+      000400 D5 F0 FB         [24] 1382 	djnz	b,00222$
+      000403 FB               [12] 1383 	mov	r3,a
+      000404 62 04            [12] 1384 	xrl	ar4,a
+      000406 8A 82            [24] 1385 	mov	dpl,r2
+      000408 8E 83            [24] 1386 	mov	dph,r6
+      00040A 8F F0            [24] 1387 	mov	b,r7
+      00040C EC               [12] 1388 	mov	a,r4
+      00040D 12r00r00         [24] 1389 	lcall	__gptrput
+                                   1390 ;	src/modbusRTU.c:157: l++;
+      000410 05*46            [12] 1391 	inc	_read_coil_sloc1_1_0
+      000412 E4               [12] 1392 	clr	a
+      000413 B5*46 02         [24] 1393 	cjne	a,_read_coil_sloc1_1_0,00225$
+      000416 05*47            [12] 1394 	inc	(_read_coil_sloc1_1_0 + 1)
+      000418                       1395 00225$:
+      000418 85*46*41         [24] 1396 	mov	_read_coil_l_262144_34,_read_coil_sloc1_1_0
+      00041B 85*47*42         [24] 1397 	mov	(_read_coil_l_262144_34 + 1),(_read_coil_sloc1_1_0 + 1)
+                                   1398 ;	src/modbusRTU.c:148: for (j = 0; j != 8; ++j) {
+      00041E 05*3D            [12] 1399 	inc	_read_coil_j_262144_34
+      000420 E4               [12] 1400 	clr	a
+      000421 B5*3D 02         [24] 1401 	cjne	a,_read_coil_j_262144_34,00226$
+      000424 05*3E            [12] 1402 	inc	(_read_coil_j_262144_34 + 1)
+      000426                       1403 00226$:
+      000426 74 08            [12] 1404 	mov	a,#0x08
+      000428 B5*3D 06         [24] 1405 	cjne	a,_read_coil_j_262144_34,00227$
+      00042B E4               [12] 1406 	clr	a
+      00042C B5*3E 02         [24] 1407 	cjne	a,(_read_coil_j_262144_34 + 1),00227$
+      00042F 80 02            [24] 1408 	sjmp	00228$
+      000431                       1409 00227$:
+      000431 80 87            [24] 1410 	sjmp	00128$
+      000433                       1411 00228$:
+                                   1412 ;	src/modbusRTU.c:159: k++;
+      000433 05*44            [12] 1413 	inc	_read_coil_sloc0_1_0
+      000435 E4               [12] 1414 	clr	a
+      000436 B5*44 02         [24] 1415 	cjne	a,_read_coil_sloc0_1_0,00229$
+      000439 05*45            [12] 1416 	inc	(_read_coil_sloc0_1_0 + 1)
+      00043B                       1417 00229$:
+      00043B 02r04rC4         [24] 1418 	ljmp	00135$
+                                   1419 ;	src/modbusRTU.c:161: for (j = 0; j != remainder; ++j) {
+      00043E                       1420 00151$:
+      00043E AE*41            [24] 1421 	mov	r6,_read_coil_l_262144_34
+      000440 AF*42            [24] 1422 	mov	r7,(_read_coil_l_262144_34 + 1)
+      000442 E4               [12] 1423 	clr	a
+      000443 F5*3D            [12] 1424 	mov	_read_coil_j_262144_34,a
+      000445 F5*3E            [12] 1425 	mov	(_read_coil_j_262144_34 + 1),a
+      000447                       1426 00131$:
+      000447 E5*39            [12] 1427 	mov	a,_read_coil_remainder_262144_34
+      000449 B5*3D 07         [24] 1428 	cjne	a,_read_coil_j_262144_34,00230$
+      00044C E5*3A            [12] 1429 	mov	a,(_read_coil_remainder_262144_34 + 1)
+      00044E B5*3E 02         [24] 1430 	cjne	a,(_read_coil_j_262144_34 + 1),00230$
+      000451 80 69            [24] 1431 	sjmp	00114$
+      000453                       1432 00230$:
+                                   1433 ;	src/modbusRTU.c:162: if (l >= ARRAY_LENGTH(Coils))
+      000453 C3               [12] 1434 	clr	c
+      000454 EE               [12] 1435 	mov	a,r6
+      000455 94 0A            [12] 1436 	subb	a,#0x0a
+      000457 EF               [12] 1437 	mov	a,r7
+      000458 94 00            [12] 1438 	subb	a,#0x00
+      00045A 40 01            [24] 1439 	jc	00110$
+                                   1440 ;	src/modbusRTU.c:163: return;
+      00045C 22               [24] 1441 	ret
+      00045D                       1442 00110$:
+                                   1443 ;	src/modbusRTU.c:164: if (Coils[l]) {
+      00045D EE               [12] 1444 	mov	a,r6
+      00045E 2E               [12] 1445 	add	a,r6
+      00045F FA               [12] 1446 	mov	r2,a
+      000460 EF               [12] 1447 	mov	a,r7
+      000461 33               [12] 1448 	rlc	a
+      000462 EA               [12] 1449 	mov	a,r2
+      000463 24r16            [12] 1450 	add	a,#_Coils
+      000465 F9               [12] 1451 	mov	r1,a
+      000466 87 02            [24] 1452 	mov	ar2,@r1
+      000468 09               [12] 1453 	inc	r1
+      000469 87 05            [24] 1454 	mov	ar5,@r1
+      00046B 19               [12] 1455 	dec	r1
+      00046C EA               [12] 1456 	mov	a,r2
+      00046D 4D               [12] 1457 	orl	a,r5
+                                   1458 ;	src/modbusRTU.c:165: lsb = 1;
+                                   1459 ;	src/modbusRTU.c:167: lsb = 0;
+      00046E 60 02            [24] 1460 	jz	00112$
+      000470 74 01            [12] 1461 	mov	a,#0x01
+      000472                       1462 00112$:
+      000472 F5*43            [12] 1463 	mov	_read_coil_lsb_262144_34,a
+                                   1464 ;	src/modbusRTU.c:169: rec_buff[k] ^= (lsb << j);
+      000474 E5*44            [12] 1465 	mov	a,_read_coil_sloc0_1_0
+      000476 25*32            [12] 1466 	add	a,_read_coil_rec_buff_65536_28
+      000478 FA               [12] 1467 	mov	r2,a
+      000479 E5*45            [12] 1468 	mov	a,(_read_coil_sloc0_1_0 + 1)
+      00047B 35*33            [12] 1469 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      00047D FC               [12] 1470 	mov	r4,a
+      00047E AD*34            [24] 1471 	mov	r5,(_read_coil_rec_buff_65536_28 + 2)
+      000480 8A 82            [24] 1472 	mov	dpl,r2
+      000482 8C 83            [24] 1473 	mov	dph,r4
+      000484 8D F0            [24] 1474 	mov	b,r5
+      000486 12r00r00         [24] 1475 	lcall	__gptrget
+      000489 F5*46            [12] 1476 	mov	_read_coil_sloc1_1_0,a
+      00048B AB*3D            [24] 1477 	mov	r3,_read_coil_j_262144_34
+      00048D 8B F0            [24] 1478 	mov	b,r3
+      00048F 05 F0            [12] 1479 	inc	b
+      000491 E5*43            [12] 1480 	mov	a,_read_coil_lsb_262144_34
+      000493 80 02            [24] 1481 	sjmp	00235$
+      000495                       1482 00233$:
+      000495 25 E0            [12] 1483 	add	a,acc
+      000497                       1484 00235$:
+      000497 D5 F0 FB         [24] 1485 	djnz	b,00233$
+      00049A FB               [12] 1486 	mov	r3,a
+      00049B E5*46            [12] 1487 	mov	a,_read_coil_sloc1_1_0
+      00049D 62 03            [12] 1488 	xrl	ar3,a
+      00049F 8A 82            [24] 1489 	mov	dpl,r2
+      0004A1 8C 83            [24] 1490 	mov	dph,r4
+      0004A3 8D F0            [24] 1491 	mov	b,r5
+      0004A5 EB               [12] 1492 	mov	a,r3
+      0004A6 12r00r00         [24] 1493 	lcall	__gptrput
+                                   1494 ;	src/modbusRTU.c:170: l++;
+      0004A9 0E               [12] 1495 	inc	r6
+      0004AA BE 00 01         [24] 1496 	cjne	r6,#0x00,00236$
+      0004AD 0F               [12] 1497 	inc	r7
+      0004AE                       1498 00236$:
+      0004AE 8E*41            [24] 1499 	mov	_read_coil_l_262144_34,r6
+      0004B0 8F*42            [24] 1500 	mov	(_read_coil_l_262144_34 + 1),r7
+                                   1501 ;	src/modbusRTU.c:161: for (j = 0; j != remainder; ++j) {
+      0004B2 05*3D            [12] 1502 	inc	_read_coil_j_262144_34
+      0004B4 E4               [12] 1503 	clr	a
+      0004B5 B5*3D 8F         [24] 1504 	cjne	a,_read_coil_j_262144_34,00131$
+      0004B8 05*3E            [12] 1505 	inc	(_read_coil_j_262144_34 + 1)
+      0004BA 80 8B            [24] 1506 	sjmp	00131$
+      0004BC                       1507 00114$:
+                                   1508 ;	src/modbusRTU.c:172: k++;
+      0004BC 05*44            [12] 1509 	inc	_read_coil_sloc0_1_0
+      0004BE E4               [12] 1510 	clr	a
+      0004BF B5*44 02         [24] 1511 	cjne	a,_read_coil_sloc0_1_0,00238$
+      0004C2 05*45            [12] 1512 	inc	(_read_coil_sloc0_1_0 + 1)
+      0004C4                       1513 00238$:
+      0004C4                       1514 00135$:
+                                   1515 ;	src/modbusRTU.c:146: for (i = num_of_bytes; i != 0; --i) {
+      0004C4 15*3B            [12] 1516 	dec	_read_coil_i_262144_34
+      0004C6 74 FF            [12] 1517 	mov	a,#0xff
+      0004C8 B5*3B 02         [24] 1518 	cjne	a,_read_coil_i_262144_34,00239$
+      0004CB 15*3C            [12] 1519 	dec	(_read_coil_i_262144_34 + 1)
+      0004CD                       1520 00239$:
+      0004CD 02r03r99         [24] 1521 	ljmp	00134$
+      0004D0                       1522 00118$:
+                                   1523 ;	src/modbusRTU.c:175: crc = generate_crc(rec_buff, k + 2);
+      0004D0 AB*44            [24] 1524 	mov	r3,_read_coil_sloc0_1_0
+      0004D2 74 02            [12] 1525 	mov	a,#0x02
+      0004D4 2B               [12] 1526 	add	a,r3
+      0004D5 F5*00            [12] 1527 	mov	_generate_crc_PARM_2,a
+      0004D7 85*32 82         [24] 1528 	mov	dpl,_read_coil_rec_buff_65536_28
+      0004DA 85*33 83         [24] 1529 	mov	dph,(_read_coil_rec_buff_65536_28 + 1)
+      0004DD 85*34 F0         [24] 1530 	mov	b,(_read_coil_rec_buff_65536_28 + 2)
+      0004E0 12r00r28         [24] 1531 	lcall	_generate_crc
+      0004E3 AE 82            [24] 1532 	mov	r6,dpl
+      0004E5 AF 83            [24] 1533 	mov	r7,dph
+                                   1534 ;	src/modbusRTU.c:176: rec_buff[k++] = crc >> 8;
+      0004E7 74 01            [12] 1535 	mov	a,#0x01
+      0004E9 25*44            [12] 1536 	add	a,_read_coil_sloc0_1_0
+      0004EB F5*3F            [12] 1537 	mov	_read_coil_k_262144_34,a
+      0004ED E4               [12] 1538 	clr	a
+      0004EE 35*45            [12] 1539 	addc	a,(_read_coil_sloc0_1_0 + 1)
+      0004F0 F5*40            [12] 1540 	mov	(_read_coil_k_262144_34 + 1),a
+      0004F2 E5*44            [12] 1541 	mov	a,_read_coil_sloc0_1_0
+      0004F4 25*32            [12] 1542 	add	a,_read_coil_rec_buff_65536_28
+      0004F6 FA               [12] 1543 	mov	r2,a
+      0004F7 E5*45            [12] 1544 	mov	a,(_read_coil_sloc0_1_0 + 1)
+      0004F9 35*33            [12] 1545 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      0004FB FB               [12] 1546 	mov	r3,a
+      0004FC AD*34            [24] 1547 	mov	r5,(_read_coil_rec_buff_65536_28 + 2)
+      0004FE 8F 04            [24] 1548 	mov	ar4,r7
+      000500 8A 82            [24] 1549 	mov	dpl,r2
+      000502 8B 83            [24] 1550 	mov	dph,r3
+      000504 8D F0            [24] 1551 	mov	b,r5
+      000506 EC               [12] 1552 	mov	a,r4
+      000507 12r00r00         [24] 1553 	lcall	__gptrput
+                                   1554 ;	src/modbusRTU.c:177: rec_buff[k++] = crc;
+      00050A 74 01            [12] 1555 	mov	a,#0x01
+      00050C 25*3F            [12] 1556 	add	a,_read_coil_k_262144_34
+      00050E F5*00            [12] 1557 	mov	_PutNChar_PARM_2,a
+      000510 E4               [12] 1558 	clr	a
+      000511 35*40            [12] 1559 	addc	a,(_read_coil_k_262144_34 + 1)
+      000513 F5*01            [12] 1560 	mov	(_PutNChar_PARM_2 + 1),a
+      000515 E5*3F            [12] 1561 	mov	a,_read_coil_k_262144_34
+      000517 25*32            [12] 1562 	add	a,_read_coil_rec_buff_65536_28
+      000519 FB               [12] 1563 	mov	r3,a
+      00051A E5*40            [12] 1564 	mov	a,(_read_coil_k_262144_34 + 1)
+      00051C 35*33            [12] 1565 	addc	a,(_read_coil_rec_buff_65536_28 + 1)
+      00051E FC               [12] 1566 	mov	r4,a
+      00051F AD*34            [24] 1567 	mov	r5,(_read_coil_rec_buff_65536_28 + 2)
+      000521 8B 82            [24] 1568 	mov	dpl,r3
+      000523 8C 83            [24] 1569 	mov	dph,r4
+      000525 8D F0            [24] 1570 	mov	b,r5
+      000527 EE               [12] 1571 	mov	a,r6
+      000528 12r00r00         [24] 1572 	lcall	__gptrput
+                                   1573 ;	src/modbusRTU.c:178: PutNChar(rec_buff,k);
+      00052B 85*32 82         [24] 1574 	mov	dpl,_read_coil_rec_buff_65536_28
+      00052E 85*33 83         [24] 1575 	mov	dph,(_read_coil_rec_buff_65536_28 + 1)
+      000531 85*34 F0         [24] 1576 	mov	b,(_read_coil_rec_buff_65536_28 + 2)
+                                   1577 ;	src/modbusRTU.c:182: }
+      000534 02r00r00         [24] 1578 	ljmp	_PutNChar
+                                   1579 ;------------------------------------------------------------
+                                   1580 ;Allocation info for local variables in function 'force_coil_bit'
+                                   1581 ;------------------------------------------------------------
+                                   1582 ;rec_buff                  Allocated with name '_force_coil_bit_rec_buff_65536_48'
+                                   1583 ;write_address             Allocated with name '_force_coil_bit_write_address_131072_51'
+                                   1584 ;write_value               Allocated to registers r6 r7 
+                                   1585 ;crc                       Allocated to registers r6 r7 
+                                   1586 ;------------------------------------------------------------
+                                   1587 ;	src/modbusRTU.c:184: void force_coil_bit(unsigned char *rec_buff){
+                                   1588 ;	-----------------------------------------
+                                   1589 ;	 function force_coil_bit
+                                   1590 ;	-----------------------------------------
+      000537                       1591 _force_coil_bit:
+      000537 85 82*49         [24] 1592 	mov	_force_coil_bit_rec_buff_65536_48,dpl
+      00053A 85 83*4A         [24] 1593 	mov	(_force_coil_bit_rec_buff_65536_48 + 1),dph
+      00053D 85 F0*4B         [24] 1594 	mov	(_force_coil_bit_rec_buff_65536_48 + 2),b
+                                   1595 ;	src/modbusRTU.c:185: if (rec_num != 8){
+      000540 74 08            [12] 1596 	mov	a,#0x08
+      000542 B5*01 02         [24] 1597 	cjne	a,_rec_num,00123$
+      000545 80 4A            [24] 1598 	sjmp	00107$
+      000547                       1599 00123$:
+                                   1600 ;	src/modbusRTU.c:186: rec_buff[1] = rec_buff[1] | (1 << 7);
+      000547 74 01            [12] 1601 	mov	a,#0x01
+      000549 25*49            [12] 1602 	add	a,_force_coil_bit_rec_buff_65536_48
+      00054B FA               [12] 1603 	mov	r2,a
+      00054C E4               [12] 1604 	clr	a
+      00054D 35*4A            [12] 1605 	addc	a,(_force_coil_bit_rec_buff_65536_48 + 1)
+      00054F FB               [12] 1606 	mov	r3,a
+      000550 AC*4B            [24] 1607 	mov	r4,(_force_coil_bit_rec_buff_65536_48 + 2)
+      000552 8A 82            [24] 1608 	mov	dpl,r2
+      000554 8B 83            [24] 1609 	mov	dph,r3
+      000556 8C F0            [24] 1610 	mov	b,r4
+      000558 12r00r00         [24] 1611 	lcall	__gptrget
+      00055B FF               [12] 1612 	mov	r7,a
+      00055C 43 07 80         [24] 1613 	orl	ar7,#0x80
+      00055F 8A 82            [24] 1614 	mov	dpl,r2
+      000561 8B 83            [24] 1615 	mov	dph,r3
+      000563 8C F0            [24] 1616 	mov	b,r4
+      000565 EF               [12] 1617 	mov	a,r7
+      000566 12r00r00         [24] 1618 	lcall	__gptrput
+                                   1619 ;	src/modbusRTU.c:187: rec_buff[2] = ERROR_CODE_OTHER_ERROR;
+      000569 74 02            [12] 1620 	mov	a,#0x02
+      00056B 25*49            [12] 1621 	add	a,_force_coil_bit_rec_buff_65536_48
+      00056D FD               [12] 1622 	mov	r5,a
+      00056E E4               [12] 1623 	clr	a
+      00056F 35*4A            [12] 1624 	addc	a,(_force_coil_bit_rec_buff_65536_48 + 1)
+      000571 FE               [12] 1625 	mov	r6,a
+      000572 AF*4B            [24] 1626 	mov	r7,(_force_coil_bit_rec_buff_65536_48 + 2)
+      000574 8D 82            [24] 1627 	mov	dpl,r5
+      000576 8E 83            [24] 1628 	mov	dph,r6
+      000578 8F F0            [24] 1629 	mov	b,r7
+      00057A 74 07            [12] 1630 	mov	a,#0x07
+      00057C 12r00r00         [24] 1631 	lcall	__gptrput
+                                   1632 ;	src/modbusRTU.c:188: PutNChar(rec_buff,3);
+      00057F 75*00 03         [24] 1633 	mov	_PutNChar_PARM_2,#0x03
+      000582 75*01 00         [24] 1634 	mov	(_PutNChar_PARM_2 + 1),#0x00
+      000585 85*49 82         [24] 1635 	mov	dpl,_force_coil_bit_rec_buff_65536_48
+      000588 85*4A 83         [24] 1636 	mov	dph,(_force_coil_bit_rec_buff_65536_48 + 1)
+      00058B 85*4B F0         [24] 1637 	mov	b,(_force_coil_bit_rec_buff_65536_48 + 2)
+      00058E 02r00r00         [24] 1638 	ljmp	_PutNChar
+      000591                       1639 00107$:
+                                   1640 ;	src/modbusRTU.c:190: unsigned int write_address = ((rec_buff[2] << 8) | rec_buff[3]);
+      000591 74 02            [12] 1641 	mov	a,#0x02
+      000593 25*49            [12] 1642 	add	a,_force_coil_bit_rec_buff_65536_48
+      000595 FD               [12] 1643 	mov	r5,a
+      000596 E4               [12] 1644 	clr	a
+      000597 35*4A            [12] 1645 	addc	a,(_force_coil_bit_rec_buff_65536_48 + 1)
+      000599 FE               [12] 1646 	mov	r6,a
+      00059A AF*4B            [24] 1647 	mov	r7,(_force_coil_bit_rec_buff_65536_48 + 2)
+      00059C 8D 82            [24] 1648 	mov	dpl,r5
+      00059E 8E 83            [24] 1649 	mov	dph,r6
+      0005A0 8F F0            [24] 1650 	mov	b,r7
+      0005A2 12r00r00         [24] 1651 	lcall	__gptrget
+      0005A5 FD               [12] 1652 	mov	r5,a
+      0005A6 7F 00            [12] 1653 	mov	r7,#0x00
+      0005A8 74 03            [12] 1654 	mov	a,#0x03
+      0005AA 25*49            [12] 1655 	add	a,_force_coil_bit_rec_buff_65536_48
+      0005AC FB               [12] 1656 	mov	r3,a
+      0005AD E4               [12] 1657 	clr	a
+      0005AE 35*4A            [12] 1658 	addc	a,(_force_coil_bit_rec_buff_65536_48 + 1)
+      0005B0 FC               [12] 1659 	mov	r4,a
+      0005B1 AE*4B            [24] 1660 	mov	r6,(_force_coil_bit_rec_buff_65536_48 + 2)
+      0005B3 8B 82            [24] 1661 	mov	dpl,r3
+      0005B5 8C 83            [24] 1662 	mov	dph,r4
+      0005B7 8E F0            [24] 1663 	mov	b,r6
+      0005B9 12r00r00         [24] 1664 	lcall	__gptrget
+      0005BC 7E 00            [12] 1665 	mov	r6,#0x00
+      0005BE 4F               [12] 1666 	orl	a,r7
+      0005BF F5*4C            [12] 1667 	mov	_force_coil_bit_write_address_131072_51,a
+      0005C1 EE               [12] 1668 	mov	a,r6
+      0005C2 4D               [12] 1669 	orl	a,r5
+      0005C3 F5*4D            [12] 1670 	mov	(_force_coil_bit_write_address_131072_51 + 1),a
+                                   1671 ;	src/modbusRTU.c:191: unsigned int write_value = ((rec_buff[4] << 8) | rec_buff[5]);
+      0005C5 74 04            [12] 1672 	mov	a,#0x04
+      0005C7 25*49            [12] 1673 	add	a,_force_coil_bit_rec_buff_65536_48
+      0005C9 FB               [12] 1674 	mov	r3,a
+      0005CA E4               [12] 1675 	clr	a
+      0005CB 35*4A            [12] 1676 	addc	a,(_force_coil_bit_rec_buff_65536_48 + 1)
+      0005CD FC               [12] 1677 	mov	r4,a
+      0005CE AD*4B            [24] 1678 	mov	r5,(_force_coil_bit_rec_buff_65536_48 + 2)
+      0005D0 8B 82            [24] 1679 	mov	dpl,r3
+      0005D2 8C 83            [24] 1680 	mov	dph,r4
+      0005D4 8D F0            [24] 1681 	mov	b,r5
+      0005D6 12r00r00         [24] 1682 	lcall	__gptrget
+      0005D9 FD               [12] 1683 	mov	r5,a
+      0005DA 7B 00            [12] 1684 	mov	r3,#0x00
+      0005DC 74 05            [12] 1685 	mov	a,#0x05
+      0005DE 25*49            [12] 1686 	add	a,_force_coil_bit_rec_buff_65536_48
+      0005E0 FA               [12] 1687 	mov	r2,a
+      0005E1 E4               [12] 1688 	clr	a
+      0005E2 35*4A            [12] 1689 	addc	a,(_force_coil_bit_rec_buff_65536_48 + 1)
+      0005E4 FC               [12] 1690 	mov	r4,a
+      0005E5 AF*4B            [24] 1691 	mov	r7,(_force_coil_bit_rec_buff_65536_48 + 2)
+      0005E7 8A 82            [24] 1692 	mov	dpl,r2
+      0005E9 8C 83            [24] 1693 	mov	dph,r4
+      0005EB 8F F0            [24] 1694 	mov	b,r7
+      0005ED 12r00r00         [24] 1695 	lcall	__gptrget
+      0005F0 7F 00            [12] 1696 	mov	r7,#0x00
+      0005F2 4B               [12] 1697 	orl	a,r3
+      0005F3 FE               [12] 1698 	mov	r6,a
+      0005F4 EF               [12] 1699 	mov	a,r7
+      0005F5 4D               [12] 1700 	orl	a,r5
+      0005F6 FF               [12] 1701 	mov	r7,a
+                                   1702 ;	src/modbusRTU.c:193: if (write_address >= ARRAY_LENGTH(Coils))
+      0005F7 C3               [12] 1703 	clr	c
+      0005F8 E5*4C            [12] 1704 	mov	a,_force_coil_bit_write_address_131072_51
+      0005FA 94 0A            [12] 1705 	subb	a,#0x0a
+      0005FC E5*4D            [12] 1706 	mov	a,(_force_coil_bit_write_address_131072_51 + 1)
+      0005FE 94 00            [12] 1707 	subb	a,#0x00
+      000600 40 01            [24] 1708 	jc	00102$
+                                   1709 ;	src/modbusRTU.c:194: return;	
+      000602 22               [24] 1710 	ret
+      000603                       1711 00102$:
+                                   1712 ;	src/modbusRTU.c:195: if (write_value) {
+      000603 EE               [12] 1713 	mov	a,r6
+      000604 4F               [12] 1714 	orl	a,r7
+      000605 60 14            [24] 1715 	jz	00104$
+                                   1716 ;	src/modbusRTU.c:196: Coils[write_address] = 0xFF;
+      000607 E5*4C            [12] 1717 	mov	a,_force_coil_bit_write_address_131072_51
+      000609 25*4C            [12] 1718 	add	a,_force_coil_bit_write_address_131072_51
+      00060B FE               [12] 1719 	mov	r6,a
+      00060C E5*4D            [12] 1720 	mov	a,(_force_coil_bit_write_address_131072_51 + 1)
+      00060E 33               [12] 1721 	rlc	a
+      00060F FF               [12] 1722 	mov	r7,a
+      000610 EE               [12] 1723 	mov	a,r6
+      000611 24r16            [12] 1724 	add	a,#_Coils
+      000613 F8               [12] 1725 	mov	r0,a
+      000614 76 FF            [12] 1726 	mov	@r0,#0xff
+      000616 08               [12] 1727 	inc	r0
+      000617 76 00            [12] 1728 	mov	@r0,#0x00
+      000619 80 12            [24] 1729 	sjmp	00105$
+      00061B                       1730 00104$:
+                                   1731 ;	src/modbusRTU.c:198: Coils[write_address] = 0x00;
+      00061B E5*4C            [12] 1732 	mov	a,_force_coil_bit_write_address_131072_51
+      00061D 25*4C            [12] 1733 	add	a,_force_coil_bit_write_address_131072_51
+      00061F FE               [12] 1734 	mov	r6,a
+      000620 E5*4D            [12] 1735 	mov	a,(_force_coil_bit_write_address_131072_51 + 1)
+      000622 33               [12] 1736 	rlc	a
+      000623 FF               [12] 1737 	mov	r7,a
+      000624 EE               [12] 1738 	mov	a,r6
+      000625 24r16            [12] 1739 	add	a,#_Coils
+      000627 F8               [12] 1740 	mov	r0,a
+      000628 76 00            [12] 1741 	mov	@r0,#0x00
+      00062A 08               [12] 1742 	inc	r0
+      00062B 76 00            [12] 1743 	mov	@r0,#0x00
+      00062D                       1744 00105$:
+                                   1745 ;	src/modbusRTU.c:200: crc = generate_crc(rec_buff, 8);
+      00062D 75*00 08         [24] 1746 	mov	_generate_crc_PARM_2,#0x08
+      000630 85*49 82         [24] 1747 	mov	dpl,_force_coil_bit_rec_buff_65536_48
+      000633 85*4A 83         [24] 1748 	mov	dph,(_force_coil_bit_rec_buff_65536_48 + 1)
+      000636 85*4B F0         [24] 1749 	mov	b,(_force_coil_bit_rec_buff_65536_48 + 2)
+      000639 12r00r28         [24] 1750 	lcall	_generate_crc
+      00063C AE 82            [24] 1751 	mov	r6,dpl
+      00063E AF 83            [24] 1752 	mov	r7,dph
+                                   1753 ;	src/modbusRTU.c:201: rec_buff[6] = crc >> 8;
+      000640 74 06            [12] 1754 	mov	a,#0x06
+      000642 25*49            [12] 1755 	add	a,_force_coil_bit_rec_buff_65536_48
+      000644 FB               [12] 1756 	mov	r3,a
+      000645 E4               [12] 1757 	clr	a
+      000646 35*4A            [12] 1758 	addc	a,(_force_coil_bit_rec_buff_65536_48 + 1)
+      000648 FC               [12] 1759 	mov	r4,a
+      000649 AD*4B            [24] 1760 	mov	r5,(_force_coil_bit_rec_buff_65536_48 + 2)
+      00064B 8F 02            [24] 1761 	mov	ar2,r7
+      00064D 8B 82            [24] 1762 	mov	dpl,r3
+      00064F 8C 83            [24] 1763 	mov	dph,r4
+      000651 8D F0            [24] 1764 	mov	b,r5
+      000653 EA               [12] 1765 	mov	a,r2
+      000654 12r00r00         [24] 1766 	lcall	__gptrput
+                                   1767 ;	src/modbusRTU.c:202: rec_buff[7] = crc;
+      000657 74 07            [12] 1768 	mov	a,#0x07
+      000659 25*49            [12] 1769 	add	a,_force_coil_bit_rec_buff_65536_48
+      00065B FB               [12] 1770 	mov	r3,a
+      00065C E4               [12] 1771 	clr	a
+      00065D 35*4A            [12] 1772 	addc	a,(_force_coil_bit_rec_buff_65536_48 + 1)
+      00065F FC               [12] 1773 	mov	r4,a
+      000660 AD*4B            [24] 1774 	mov	r5,(_force_coil_bit_rec_buff_65536_48 + 2)
+      000662 8B 82            [24] 1775 	mov	dpl,r3
+      000664 8C 83            [24] 1776 	mov	dph,r4
+      000666 8D F0            [24] 1777 	mov	b,r5
+      000668 EE               [12] 1778 	mov	a,r6
+      000669 12r00r00         [24] 1779 	lcall	__gptrput
+                                   1780 ;	src/modbusRTU.c:203: PutNChar(rec_buff,8);
+      00066C 75*00 08         [24] 1781 	mov	_PutNChar_PARM_2,#0x08
+      00066F 75*01 00         [24] 1782 	mov	(_PutNChar_PARM_2 + 1),#0x00
+      000672 85*49 82         [24] 1783 	mov	dpl,_force_coil_bit_rec_buff_65536_48
+      000675 85*4A 83         [24] 1784 	mov	dph,(_force_coil_bit_rec_buff_65536_48 + 1)
+      000678 85*4B F0         [24] 1785 	mov	b,(_force_coil_bit_rec_buff_65536_48 + 2)
+                                   1786 ;	src/modbusRTU.c:206: }
+      00067B 02r00r00         [24] 1787 	ljmp	_PutNChar
+                                   1788 ;------------------------------------------------------------
+                                   1789 ;Allocation info for local variables in function 'force_coil_mul'
+                                   1790 ;------------------------------------------------------------
+                                   1791 ;rec_buff                  Allocated with name '_force_coil_mul_rec_buff_65536_54'
+                                   1792 ;write_multi_Address       Allocated with name '_force_coil_mul_write_multi_Address_65536_55'
+                                   1793 ;num_of_bytes              Allocated to registers r6 
+                                   1794 ;remainder                 Allocated with name '_force_coil_mul_remainder_65536_55'
+                                   1795 ;i                         Allocated with name '_force_coil_mul_i_65536_55'
+                                   1796 ;j                         Allocated with name '_force_coil_mul_j_65536_55'
+                                   1797 ;l                         Allocated to registers r7 
+                                   1798 ;ValueToWrite              Allocated with name '_force_coil_mul_ValueToWrite_65537_57'
+                                   1799 ;q                         Allocated with name '_force_coil_mul_q_65537_57'
+                                   1800 ;crc                       Allocated to registers r6 r7 
+                                   1801 ;------------------------------------------------------------
+                                   1802 ;	src/modbusRTU.c:208: void force_coil_mul(unsigned char *rec_buff){
+                                   1803 ;	-----------------------------------------
+                                   1804 ;	 function force_coil_mul
+                                   1805 ;	-----------------------------------------
+      00067E                       1806 _force_coil_mul:
+      00067E 85 82*4E         [24] 1807 	mov	_force_coil_mul_rec_buff_65536_54,dpl
+      000681 85 83*4F         [24] 1808 	mov	(_force_coil_mul_rec_buff_65536_54 + 1),dph
+      000684 85 F0*50         [24] 1809 	mov	(_force_coil_mul_rec_buff_65536_54 + 2),b
+                                   1810 ;	src/modbusRTU.c:213: write_multi_Address = ((rec_buff[2] << 8) | rec_buff[3]);
+      000687 74 02            [12] 1811 	mov	a,#0x02
+      000689 25*4E            [12] 1812 	add	a,_force_coil_mul_rec_buff_65536_54
+      00068B FA               [12] 1813 	mov	r2,a
+      00068C E4               [12] 1814 	clr	a
+      00068D 35*4F            [12] 1815 	addc	a,(_force_coil_mul_rec_buff_65536_54 + 1)
+      00068F FB               [12] 1816 	mov	r3,a
+      000690 AC*50            [24] 1817 	mov	r4,(_force_coil_mul_rec_buff_65536_54 + 2)
+      000692 8A 82            [24] 1818 	mov	dpl,r2
+      000694 8B 83            [24] 1819 	mov	dph,r3
+      000696 8C F0            [24] 1820 	mov	b,r4
+      000698 12r00r00         [24] 1821 	lcall	__gptrget
+      00069B FC               [12] 1822 	mov	r4,a
+      00069C 7A 00            [12] 1823 	mov	r2,#0x00
+      00069E 74 03            [12] 1824 	mov	a,#0x03
+      0006A0 25*4E            [12] 1825 	add	a,_force_coil_mul_rec_buff_65536_54
+      0006A2 FB               [12] 1826 	mov	r3,a
+      0006A3 E4               [12] 1827 	clr	a
+      0006A4 35*4F            [12] 1828 	addc	a,(_force_coil_mul_rec_buff_65536_54 + 1)
+      0006A6 FE               [12] 1829 	mov	r6,a
+      0006A7 AF*50            [24] 1830 	mov	r7,(_force_coil_mul_rec_buff_65536_54 + 2)
+      0006A9 8B 82            [24] 1831 	mov	dpl,r3
+      0006AB 8E 83            [24] 1832 	mov	dph,r6
+      0006AD 8F F0            [24] 1833 	mov	b,r7
+      0006AF 12r00r00         [24] 1834 	lcall	__gptrget
+      0006B2 7F 00            [12] 1835 	mov	r7,#0x00
+      0006B4 4A               [12] 1836 	orl	a,r2
+      0006B5 F5*51            [12] 1837 	mov	_force_coil_mul_write_multi_Address_65536_55,a
+      0006B7 EF               [12] 1838 	mov	a,r7
+      0006B8 4C               [12] 1839 	orl	a,r4
+      0006B9 F5*52            [12] 1840 	mov	(_force_coil_mul_write_multi_Address_65536_55 + 1),a
+                                   1841 ;	src/modbusRTU.c:214: num_of_bytes = ((rec_buff[4] << 8) | rec_buff[5])/8;
+      0006BB 74 04            [12] 1842 	mov	a,#0x04
+      0006BD 25*4E            [12] 1843 	add	a,_force_coil_mul_rec_buff_65536_54
+      0006BF FB               [12] 1844 	mov	r3,a
+      0006C0 E4               [12] 1845 	clr	a
+      0006C1 35*4F            [12] 1846 	addc	a,(_force_coil_mul_rec_buff_65536_54 + 1)
+      0006C3 FC               [12] 1847 	mov	r4,a
+      0006C4 AD*50            [24] 1848 	mov	r5,(_force_coil_mul_rec_buff_65536_54 + 2)
+      0006C6 8B 82            [24] 1849 	mov	dpl,r3
+      0006C8 8C 83            [24] 1850 	mov	dph,r4
+      0006CA 8D F0            [24] 1851 	mov	b,r5
+      0006CC 12r00r00         [24] 1852 	lcall	__gptrget
+      0006CF FD               [12] 1853 	mov	r5,a
+      0006D0 7B 00            [12] 1854 	mov	r3,#0x00
+      0006D2 74 05            [12] 1855 	mov	a,#0x05
+      0006D4 25*4E            [12] 1856 	add	a,_force_coil_mul_rec_buff_65536_54
+      0006D6 FA               [12] 1857 	mov	r2,a
+      0006D7 E4               [12] 1858 	clr	a
+      0006D8 35*4F            [12] 1859 	addc	a,(_force_coil_mul_rec_buff_65536_54 + 1)
+      0006DA FC               [12] 1860 	mov	r4,a
+      0006DB AF*50            [24] 1861 	mov	r7,(_force_coil_mul_rec_buff_65536_54 + 2)
+      0006DD 8A 82            [24] 1862 	mov	dpl,r2
+      0006DF 8C 83            [24] 1863 	mov	dph,r4
+      0006E1 8F F0            [24] 1864 	mov	b,r7
+      0006E3 12r00r00         [24] 1865 	lcall	__gptrget
+      0006E6 7F 00            [12] 1866 	mov	r7,#0x00
+      0006E8 4B               [12] 1867 	orl	a,r3
+      0006E9 F5 82            [12] 1868 	mov	dpl,a
+      0006EB EF               [12] 1869 	mov	a,r7
+      0006EC 4D               [12] 1870 	orl	a,r5
+      0006ED F5 83            [12] 1871 	mov	dph,a
+      0006EF 75*00 08         [24] 1872 	mov	__divsint_PARM_2,#0x08
+                                   1873 ;	1-genFromRTrack replaced	mov	(__divsint_PARM_2 + 1),#0x00
+      0006F2 8F*01            [24] 1874 	mov	(__divsint_PARM_2 + 1),r7
+      0006F4 12r00r00         [24] 1875 	lcall	__divsint
+      0006F7 AE 82            [24] 1876 	mov	r6,dpl
+                                   1877 ;	src/modbusRTU.c:215: remainder = num_of_bytes % 8;
+      0006F9 74 07            [12] 1878 	mov	a,#0x07
+      0006FB 5E               [12] 1879 	anl	a,r6
+                                   1880 ;	src/modbusRTU.c:216: if (remainder) {
+      0006FC FF               [12] 1881 	mov	r7,a
+      0006FD 8F*53            [24] 1882 	mov	_force_coil_mul_remainder_65536_55,r7
+      0006FF 60 05            [24] 1883 	jz	00102$
+                                   1884 ;	src/modbusRTU.c:217: num_of_bytes += 1;
+      000701 8E 07            [24] 1885 	mov	ar7,r6
+      000703 EF               [12] 1886 	mov	a,r7
+      000704 04               [12] 1887 	inc	a
+      000705 FE               [12] 1888 	mov	r6,a
+      000706                       1889 00102$:
+                                   1890 ;	src/modbusRTU.c:219: l = write_multi_Address;
+      000706 AF*51            [24] 1891 	mov	r7,_force_coil_mul_write_multi_Address_65536_55
+                                   1892 ;	src/modbusRTU.c:222: for (i = num_of_bytes; i != 0; --i) {
+      000708 75*57 07         [24] 1893 	mov	_force_coil_mul_q_65537_57,#0x07
+      00070B 8E*54            [24] 1894 	mov	_force_coil_mul_i_65536_55,r6
+      00070D                       1895 00125$:
+      00070D E5*54            [12] 1896 	mov	a,_force_coil_mul_i_65536_55
+      00070F 70 03            [24] 1897 	jnz	00190$
+      000711 02r07rDB         [24] 1898 	ljmp	00118$
+      000714                       1899 00190$:
+                                   1900 ;	src/modbusRTU.c:223: ValueToWrite = rec_buff[q];
+      000714 E5*57            [12] 1901 	mov	a,_force_coil_mul_q_65537_57
+      000716 25*4E            [12] 1902 	add	a,_force_coil_mul_rec_buff_65536_54
+      000718 FA               [12] 1903 	mov	r2,a
+      000719 E4               [12] 1904 	clr	a
+      00071A 35*4F            [12] 1905 	addc	a,(_force_coil_mul_rec_buff_65536_54 + 1)
+      00071C FB               [12] 1906 	mov	r3,a
+      00071D AC*50            [24] 1907 	mov	r4,(_force_coil_mul_rec_buff_65536_54 + 2)
+      00071F 8A 82            [24] 1908 	mov	dpl,r2
+      000721 8B 83            [24] 1909 	mov	dph,r3
+      000723 8C F0            [24] 1910 	mov	b,r4
+      000725 12r00r00         [24] 1911 	lcall	__gptrget
+      000728 F5*56            [12] 1912 	mov	_force_coil_mul_ValueToWrite_65537_57,a
+                                   1913 ;	src/modbusRTU.c:224: q++;
+      00072A 05*57            [12] 1914 	inc	_force_coil_mul_q_65537_57
+                                   1915 ;	src/modbusRTU.c:225: if (i > 1) {
+      00072C E5*54            [12] 1916 	mov	a,_force_coil_mul_i_65536_55
+      00072E 24 FE            [12] 1917 	add	a,#0xff - 0x01
+      000730 50 51            [24] 1918 	jnc	00139$
+                                   1919 ;	src/modbusRTU.c:226: for (j = 0; j != 8; ++j) {
+      000732 8F 03            [24] 1920 	mov	ar3,r7
+      000734 75*55 00         [24] 1921 	mov	_force_coil_mul_j_65536_55,#0x00
+      000737                       1922 00119$:
+                                   1923 ;	src/modbusRTU.c:227: if (l >= ARRAY_LENGTH(Coils))
+      000737 BB 0A 00         [24] 1924 	cjne	r3,#0x0a,00192$
+      00073A                       1925 00192$:
+      00073A 40 01            [24] 1926 	jc	00104$
+                                   1927 ;	src/modbusRTU.c:228: return;
+      00073C 22               [24] 1928 	ret
+      00073D                       1929 00104$:
+                                   1930 ;	src/modbusRTU.c:229: if (CHECK_BIT(ValueToWrite, j)) {
+      00073D 85*55 F0         [24] 1931 	mov	b,_force_coil_mul_j_65536_55
+      000740 05 F0            [12] 1932 	inc	b
+      000742 7D 01            [12] 1933 	mov	r5,#0x01
+      000744 7E 00            [12] 1934 	mov	r6,#0x00
+      000746 80 06            [24] 1935 	sjmp	00195$
+      000748                       1936 00194$:
+      000748 ED               [12] 1937 	mov	a,r5
+      000749 2D               [12] 1938 	add	a,r5
+      00074A FD               [12] 1939 	mov	r5,a
+      00074B EE               [12] 1940 	mov	a,r6
+      00074C 33               [12] 1941 	rlc	a
+      00074D FE               [12] 1942 	mov	r6,a
+      00074E                       1943 00195$:
+      00074E D5 F0 F7         [24] 1944 	djnz	b,00194$
+      000751 AA*56            [24] 1945 	mov	r2,_force_coil_mul_ValueToWrite_65537_57
+      000753 7C 00            [12] 1946 	mov	r4,#0x00
+      000755 EA               [12] 1947 	mov	a,r2
+      000756 52 05            [12] 1948 	anl	ar5,a
+      000758 EC               [12] 1949 	mov	a,r4
+      000759 52 06            [12] 1950 	anl	ar6,a
+      00075B ED               [12] 1951 	mov	a,r5
+      00075C 4E               [12] 1952 	orl	a,r6
+      00075D 60 0D            [24] 1953 	jz	00106$
+                                   1954 ;	src/modbusRTU.c:230: Coils[l] = 1;
+      00075F EB               [12] 1955 	mov	a,r3
+      000760 2B               [12] 1956 	add	a,r3
+      000761 FE               [12] 1957 	mov	r6,a
+      000762 24r16            [12] 1958 	add	a,#_Coils
+      000764 F8               [12] 1959 	mov	r0,a
+      000765 76 01            [12] 1960 	mov	@r0,#0x01
+      000767 08               [12] 1961 	inc	r0
+      000768 76 00            [12] 1962 	mov	@r0,#0x00
+      00076A 80 0B            [24] 1963 	sjmp	00107$
+      00076C                       1964 00106$:
+                                   1965 ;	src/modbusRTU.c:232: Coils[l] = 0;
+      00076C EB               [12] 1966 	mov	a,r3
+      00076D 2B               [12] 1967 	add	a,r3
+      00076E FE               [12] 1968 	mov	r6,a
+      00076F 24r16            [12] 1969 	add	a,#_Coils
+      000771 F8               [12] 1970 	mov	r0,a
+      000772 76 00            [12] 1971 	mov	@r0,#0x00
+      000774 08               [12] 1972 	inc	r0
+      000775 76 00            [12] 1973 	mov	@r0,#0x00
+      000777                       1974 00107$:
+                                   1975 ;	src/modbusRTU.c:234: l++;
+      000777 0B               [12] 1976 	inc	r3
+      000778 8B 07            [24] 1977 	mov	ar7,r3
+                                   1978 ;	src/modbusRTU.c:226: for (j = 0; j != 8; ++j) {
+      00077A 05*55            [12] 1979 	inc	_force_coil_mul_j_65536_55
+      00077C 74 08            [12] 1980 	mov	a,#0x08
+      00077E B5*55 B6         [24] 1981 	cjne	a,_force_coil_mul_j_65536_55,00119$
+                                   1982 ;	src/modbusRTU.c:237: for (j = 0; j != remainder; ++j) {
+      000781 80 53            [24] 1983 	sjmp	00126$
+      000783                       1984 00139$:
+      000783 8F 06            [24] 1985 	mov	ar6,r7
+      000785 75*55 00         [24] 1986 	mov	_force_coil_mul_j_65536_55,#0x00
+      000788                       1987 00122$:
+      000788 E5*53            [12] 1988 	mov	a,_force_coil_mul_remainder_65536_55
+      00078A B5*55 02         [24] 1989 	cjne	a,_force_coil_mul_j_65536_55,00199$
+      00078D 80 47            [24] 1990 	sjmp	00126$
+      00078F                       1991 00199$:
+                                   1992 ;	src/modbusRTU.c:238: if (l >= ARRAY_LENGTH(Coils))
+      00078F BE 0A 00         [24] 1993 	cjne	r6,#0x0a,00200$
+      000792                       1994 00200$:
+      000792 40 01            [24] 1995 	jc	00110$
+                                   1996 ;	src/modbusRTU.c:239: return;
+      000794 22               [24] 1997 	ret
+      000795                       1998 00110$:
+                                   1999 ;	src/modbusRTU.c:240: if (CHECK_BIT(ValueToWrite, j)) {
+      000795 85*55 F0         [24] 2000 	mov	b,_force_coil_mul_j_65536_55
+      000798 05 F0            [12] 2001 	inc	b
+      00079A 7B 01            [12] 2002 	mov	r3,#0x01
+      00079C 7C 00            [12] 2003 	mov	r4,#0x00
+      00079E 80 06            [24] 2004 	sjmp	00203$
+      0007A0                       2005 00202$:
+      0007A0 EB               [12] 2006 	mov	a,r3
+      0007A1 2B               [12] 2007 	add	a,r3
+      0007A2 FB               [12] 2008 	mov	r3,a
+      0007A3 EC               [12] 2009 	mov	a,r4
+      0007A4 33               [12] 2010 	rlc	a
+      0007A5 FC               [12] 2011 	mov	r4,a
+      0007A6                       2012 00203$:
+      0007A6 D5 F0 F7         [24] 2013 	djnz	b,00202$
+      0007A9 AA*56            [24] 2014 	mov	r2,_force_coil_mul_ValueToWrite_65537_57
+      0007AB 7D 00            [12] 2015 	mov	r5,#0x00
+      0007AD EA               [12] 2016 	mov	a,r2
+      0007AE 52 03            [12] 2017 	anl	ar3,a
+      0007B0 ED               [12] 2018 	mov	a,r5
+      0007B1 52 04            [12] 2019 	anl	ar4,a
+      0007B3 EB               [12] 2020 	mov	a,r3
+      0007B4 4C               [12] 2021 	orl	a,r4
+      0007B5 60 0D            [24] 2022 	jz	00112$
+                                   2023 ;	src/modbusRTU.c:241: Coils[l] = 1;
+      0007B7 EE               [12] 2024 	mov	a,r6
+      0007B8 2E               [12] 2025 	add	a,r6
+      0007B9 FD               [12] 2026 	mov	r5,a
+      0007BA 24r16            [12] 2027 	add	a,#_Coils
+      0007BC F8               [12] 2028 	mov	r0,a
+      0007BD 76 01            [12] 2029 	mov	@r0,#0x01
+      0007BF 08               [12] 2030 	inc	r0
+      0007C0 76 00            [12] 2031 	mov	@r0,#0x00
+      0007C2 80 0B            [24] 2032 	sjmp	00113$
+      0007C4                       2033 00112$:
+                                   2034 ;	src/modbusRTU.c:243: Coils[l] = 0;
+      0007C4 EE               [12] 2035 	mov	a,r6
+      0007C5 2E               [12] 2036 	add	a,r6
+      0007C6 FD               [12] 2037 	mov	r5,a
+      0007C7 24r16            [12] 2038 	add	a,#_Coils
+      0007C9 F8               [12] 2039 	mov	r0,a
+      0007CA 76 00            [12] 2040 	mov	@r0,#0x00
+      0007CC 08               [12] 2041 	inc	r0
+      0007CD 76 00            [12] 2042 	mov	@r0,#0x00
+      0007CF                       2043 00113$:
+                                   2044 ;	src/modbusRTU.c:245: l++;
+      0007CF 0E               [12] 2045 	inc	r6
+      0007D0 8E 07            [24] 2046 	mov	ar7,r6
+                                   2047 ;	src/modbusRTU.c:237: for (j = 0; j != remainder; ++j) {
+      0007D2 05*55            [12] 2048 	inc	_force_coil_mul_j_65536_55
+      0007D4 80 B2            [24] 2049 	sjmp	00122$
+      0007D6                       2050 00126$:
+                                   2051 ;	src/modbusRTU.c:222: for (i = num_of_bytes; i != 0; --i) {
+      0007D6 15*54            [12] 2052 	dec	_force_coil_mul_i_65536_55
+      0007D8 02r07r0D         [24] 2053 	ljmp	00125$
+      0007DB                       2054 00118$:
+                                   2055 ;	src/modbusRTU.c:249: uint16_t crc = generate_crc(rec_buff, 8);
+      0007DB 75*00 08         [24] 2056 	mov	_generate_crc_PARM_2,#0x08
+      0007DE 85*4E 82         [24] 2057 	mov	dpl,_force_coil_mul_rec_buff_65536_54
+      0007E1 85*4F 83         [24] 2058 	mov	dph,(_force_coil_mul_rec_buff_65536_54 + 1)
+      0007E4 85*50 F0         [24] 2059 	mov	b,(_force_coil_mul_rec_buff_65536_54 + 2)
+      0007E7 12r00r28         [24] 2060 	lcall	_generate_crc
+      0007EA AE 82            [24] 2061 	mov	r6,dpl
+      0007EC AF 83            [24] 2062 	mov	r7,dph
+                                   2063 ;	src/modbusRTU.c:250: rec_buff[6] = crc >> 8;
+      0007EE 74 06            [12] 2064 	mov	a,#0x06
+      0007F0 25*4E            [12] 2065 	add	a,_force_coil_mul_rec_buff_65536_54
+      0007F2 FB               [12] 2066 	mov	r3,a
+      0007F3 E4               [12] 2067 	clr	a
+      0007F4 35*4F            [12] 2068 	addc	a,(_force_coil_mul_rec_buff_65536_54 + 1)
+      0007F6 FC               [12] 2069 	mov	r4,a
+      0007F7 AD*50            [24] 2070 	mov	r5,(_force_coil_mul_rec_buff_65536_54 + 2)
+      0007F9 8F 02            [24] 2071 	mov	ar2,r7
+      0007FB 8B 82            [24] 2072 	mov	dpl,r3
+      0007FD 8C 83            [24] 2073 	mov	dph,r4
+      0007FF 8D F0            [24] 2074 	mov	b,r5
+      000801 EA               [12] 2075 	mov	a,r2
+      000802 12r00r00         [24] 2076 	lcall	__gptrput
+                                   2077 ;	src/modbusRTU.c:251: rec_buff[7] = crc;
+      000805 74 07            [12] 2078 	mov	a,#0x07
+      000807 25*4E            [12] 2079 	add	a,_force_coil_mul_rec_buff_65536_54
+      000809 FB               [12] 2080 	mov	r3,a
+      00080A E4               [12] 2081 	clr	a
+      00080B 35*4F            [12] 2082 	addc	a,(_force_coil_mul_rec_buff_65536_54 + 1)
+      00080D FC               [12] 2083 	mov	r4,a
+      00080E AD*50            [24] 2084 	mov	r5,(_force_coil_mul_rec_buff_65536_54 + 2)
+      000810 8B 82            [24] 2085 	mov	dpl,r3
+      000812 8C 83            [24] 2086 	mov	dph,r4
+      000814 8D F0            [24] 2087 	mov	b,r5
+      000816 EE               [12] 2088 	mov	a,r6
+      000817 12r00r00         [24] 2089 	lcall	__gptrput
+                                   2090 ;	src/modbusRTU.c:252: PutNChar(rec_buff,8);
+      00081A 75*00 08         [24] 2091 	mov	_PutNChar_PARM_2,#0x08
+      00081D 75*01 00         [24] 2092 	mov	(_PutNChar_PARM_2 + 1),#0x00
+      000820 85*4E 82         [24] 2093 	mov	dpl,_force_coil_mul_rec_buff_65536_54
+      000823 85*4F 83         [24] 2094 	mov	dph,(_force_coil_mul_rec_buff_65536_54 + 1)
+      000826 85*50 F0         [24] 2095 	mov	b,(_force_coil_mul_rec_buff_65536_54 + 2)
+                                   2096 ;	src/modbusRTU.c:253: }
+      000829 02r00r00         [24] 2097 	ljmp	_PutNChar
+                                   2098 	.area CSEG    (CODE)
+                                   2099 	.area CONST   (CODE)
+                                   2100 	.area CABS    (ABS,CODE)
